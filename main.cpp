@@ -10,7 +10,13 @@
 
 using namespace std;
 
-
+bool login(string &user,string &pass){
+    bool cont = true;
+    while (cont){
+        printLogin(user, pass);
+        
+    }
+}
 
 int main() {
     system("color 2");
@@ -28,22 +34,11 @@ int main() {
     #endif
     system("color 2");
     printTitulo();
-    printEmpresa();
     
+    string usuario, pass;
+
     
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
