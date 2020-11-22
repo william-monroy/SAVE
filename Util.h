@@ -4,21 +4,29 @@
 
 using namespace std;
 
-void clear(string SO){
-    if(SO=="Windows"){
+void clear(string SO)
+{
+    if (SO == "Windows")
+    {
         system("cls");
-    }else{
+    }
+    else
+    {
         system("clear");
     }
 }
 
-void pause(string SO){
-    if(SO=="Windows"){
+void pause(string SO)
+{
+    if (SO == "Windows")
+    {
         system("pause");
-    }else{
+    }
+    else
+    {
         cout << "Presione enter para continuar...";
         string temp;
-        cin>>temp;
+        cin >> temp;
     }
 }
 /*
@@ -27,4 +35,3 @@ void color(int num){
     char const *cmd2 = cmd.c_str();
     system(strcat("color ",cmd2));   
 }  */
-

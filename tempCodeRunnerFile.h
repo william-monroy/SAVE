@@ -1,0 +1,1 @@
+string nombre, string apellido, int edad, int ine,
