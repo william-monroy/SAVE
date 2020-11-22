@@ -10,6 +10,7 @@ private:
     int año;
 
 public:
+    Fecha();
     Fecha(int dia, int mes, int año);
     int getDia();
     void setDia(int dia);
@@ -20,8 +21,18 @@ public:
     void mostrarFecha();
 };
 
+Fecha::Fecha()
+{
+    this->dia = 0;
+    this->mes = 0;
+    this->año = 0;
+}
+
 Fecha::Fecha(int dia, int mes, int año)
 {
+    this->dia = dia;
+    this->mes = mes;
+    this->año = año;
 }
 
 int Fecha::getDia()
@@ -51,6 +62,7 @@ void Fecha::setAño(int año)
     this->año = año;
 }
 
-void Fecha::mostrarFecha(){
-    cout << this->dia << "/" << this->mes<<"/"<<this->año<<endl;
+void Fecha::mostrarFecha()
+{
+    cout << this->dia << "/" << this->mes << "/" << this->año << endl;
 }

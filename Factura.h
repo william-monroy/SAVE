@@ -15,6 +15,7 @@ private:
     double total_a_pagar;
 
 public:
+    Factura();
     Factura(int id_Fact, int id_Cli, Fecha fecha_Comp, int id_Prod, double cant, double total);
     int getId_Factura();
     void setId_Factura(int id_Factura);
@@ -29,6 +30,16 @@ public:
     double getTotal_a_pagar();
     void setTotal_a_pagar(double total_a_pagar);
 };
+
+Factura::Factura(){
+    this->id_Factura = 0;
+    this->id_Cliente = 0;
+    Fecha fecha;
+    this->fecha_Compra = fecha;
+    this->id_Producto = 0;
+    this->cantidad = 0;
+    this->total_a_pagar = 0;
+}
 
 Factura::Factura(int id_Fact, int id_Cli, Fecha fecha_Comp, int id_Prod, double cant, double total)
 {

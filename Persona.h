@@ -15,6 +15,7 @@ private:
     int ine;
 
 public:
+    Persona();
     Persona(string nombre, string apellido, int edad, int ine);
     string getNombre();
     void setNombre(string nombre);
@@ -26,6 +27,13 @@ public:
     void setIne(int ine);
     void mostrarPersona();
 };
+
+Persona::Persona(){
+    this->nombre = "";
+    this->apellido = "";
+    this->edad = 0;
+    this->ine = 0;
+}
 
 Persona::Persona(string nombre, string apellido, int edad, int ine)
 {

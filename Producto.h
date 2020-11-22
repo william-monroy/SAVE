@@ -13,6 +13,7 @@ private:
     int id_Cate;
 
 public:
+    Producto();
     Producto(int id_Prod, string nom, string desc, double stock, double precio, int id_Cate);
     int getId_Producto();
     void setId_Producto(int id_Producto);
@@ -28,8 +29,24 @@ public:
     void setId_Cate(int id_Cate);
 };
 
+Producto::Producto()
+{
+    this->id_Producto = 0;
+    this->nombre = "";
+    this->descripcion = "";
+    this->stock = 0;
+    this->precio = 0;
+    this->id_Cate = 0;
+}
+
 Producto::Producto(int id_Prod, string nom, string desc, double stock, double precio, int id_Cate)
 {
+    this->id_Producto = id_Prod;
+    this->nombre = nom;
+    this->descripcion = desc;
+    this->stock = stock;
+    this->precio = precio;
+    this->id_Cate = id_Cate;
 }
 
 int Producto::getId_Producto()

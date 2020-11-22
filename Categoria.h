@@ -9,12 +9,18 @@ private:
     string nombre;
 
 public:
+    Categoria();
     Categoria(int id_Cat, string nom);
     int getId_Categoria();
     void setId_Categoria(int id_Categoria);
     string getNombre();
     void setNombre(string nombre);
 };
+
+Categoria::Categoria(){
+    this->id_Categoria = 0;
+    this->nombre = "";
+}
 
 Categoria::Categoria(int id_Cat, string nom)
 {

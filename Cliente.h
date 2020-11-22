@@ -13,11 +13,16 @@ private:
     int id_Cliente;
 
 public:
+    Cliente();
     Cliente(string nombre, string apellido, int edad, int ine, int id_Cli);
     int getId_Cliente();
     void setId_Cliente(int id_Cliente);
     void mostrarAlumno();
 };
+
+Cliente::Cliente(): Persona(){
+    this->id_Cliente = 0;
+}
 
 Cliente::Cliente(string nombre, string apellido, int edad, int ine, int id_Cli) : Persona(nombre, apellido, edad, ine)
 {

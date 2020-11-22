@@ -4,10 +4,7 @@
 #include <iostream>
 #include "Persona.h"
 
-
 using namespace std;
-
-
 
 class Empleado : public Persona
 {
@@ -17,6 +14,7 @@ private:
     string cargo;
 
 public:
+    Empleado();
     Empleado(string nombre, string apellido, int edad, int ine, int id_Emp, int id_Dpto, string cargo);
     int getId_Empleado();
     void setId_Empleado(int id_Empleado);
@@ -25,6 +23,12 @@ public:
     string getCargo();
     void setCargo(string cargo);
 };
+
+Empleado::Empleado() : Persona(){
+    this->id_Empleado = 0;
+    this->id_Dpto = 0;
+    this->cargo = "";
+}
 
 Empleado::Empleado(string nombre, string apellido, int edad, int ine, int id_Emp, int id_Dpto, string cargo) : Persona(nombre, apellido, edad, ine)
 {

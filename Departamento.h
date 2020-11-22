@@ -9,6 +9,7 @@ private:
     string nombre;
 
 public:
+    Departamento();
     Departamento(int id_Dpto, string nombre);
     int getId_Dpto();
     void setId_Dpto(int id_Dpto);
@@ -16,8 +17,16 @@ public:
     void setNombre(string nombre);
 };
 
+Departamento::Departamento()
+{
+    this->id_Dpto = 0;
+    this->nombre = "";
+}
+
 Departamento::Departamento(int id_Dpto, string nombre)
 {
+    this->id_Dpto = id_Dpto;
+    this->nombre = nombre;
 }
 
 int Departamento::getId_Dpto()
