@@ -7,17 +7,17 @@ class Fecha
 private:
     int dia;
     int mes;
-    int año;
+    int ano;
 
 public:
     Fecha();
-    Fecha(int dia, int mes, int año);
+    Fecha(int dia, int mes, int ano);
     int getDia();
     void setDia(int dia);
     int getMes();
     void setMes(int mes);
-    int getAño();
-    void setAño(int año);
+    int getAno();
+    void setAno(int ano);
     void mostrarFecha();
 };
 
@@ -25,14 +25,14 @@ Fecha::Fecha()
 {
     this->dia = 0;
     this->mes = 0;
-    this->año = 0;
+    this->ano = 0;
 }
 
-Fecha::Fecha(int dia, int mes, int año)
+Fecha::Fecha(int dia, int mes, int ano)
 {
     this->dia = dia;
     this->mes = mes;
-    this->año = año;
+    this->ano = ano;
 }
 
 int Fecha::getDia()
@@ -53,16 +53,16 @@ void Fecha::setMes(int mes)
     this->mes = mes;
 }
 
-int Fecha::getAño()
+int Fecha::getAno()
 {
-    return this->año;
+    return this->ano;
 }
-void Fecha::setAño(int año)
+void Fecha::setAno(int ano)
 {
-    this->año = año;
+    this->ano = ano;
 }
 
 void Fecha::mostrarFecha()
 {
-    cout << this->dia << "/" << this->mes << "/" << this->año << endl;
+    cout << this->dia << "/" << this->mes << "/" << this->ano << endl;
 }

@@ -21,6 +21,7 @@ public:
     void setPermiso(int permiso);
     int getId_Persona();
     void setId_Persona(int id_Persona);
+    void mostrarCuenta();
 };
 
 Cuenta::Cuenta()
@@ -73,4 +74,11 @@ int Cuenta::getId_Persona()
 void Cuenta::setId_Persona(int id_Persona)
 {
     this->id_Persona = id_Persona;
+}
+
+void Cuenta::mostrarCuenta(){
+    cout << "usuario: " << this->usuario << endl;
+    cout << "contraseña: " << this->pass << endl;
+    cout << "Permiso: " << this->permiso << endl;
+    cout << "ID: " << this->id_Persona << endl;
 }

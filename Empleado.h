@@ -59,7 +59,7 @@ int Empleado::getId_Dpto()
 }
 void Empleado::setId_Dpto(int id_Dpto)
 {
-    this->id_Dpto = id_Dpto;
+    this->id_Dpto=id_Dpto;
 }
 
 string Empleado::getCargo()
