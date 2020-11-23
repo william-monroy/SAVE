@@ -51,9 +51,7 @@ void cargarCuentas(vector<Cuenta> &cuentas)
         Cuenta temp(usr, pas, perm, idi);
         cuentas.push_back(temp);
     }
-    cout << "Cargando cuentas..." << endl;
-    sleepcp(1000);
-    cout << "OK..." << endl;
+    archivo.close();
     /*
     for (int i = 0; i < cuentas.size(); i++)
     {
@@ -93,9 +91,7 @@ void cargarEmpleados(vector<Empleado> &empleados)
         Empleado temp(nom,ape,edadi,inei,id_Emi,id_Dpi,carg,tempCuenta);
         empleados.push_back(temp);
     }
-    cout << "Cargando Empleados..." << endl;
-    sleepcp(1000);
-    cout << "OK..." << endl;
+    archivo.close();
     /*
     for (int i = 0; i < empleados.size(); i++)
     {
@@ -133,9 +129,7 @@ void cargarClientes(vector<Cliente> &clientes)
         Cliente temp(nom,ape,edadi,inei,id_Clii,tempCuenta);
         clientes.push_back(temp);
     }
-    cout << "Cargando clientes..." << endl;
-    sleepcp(1000);
-    cout << "OK..." << endl;
+    archivo.close();
     /*
     for (int i = 0; i < clientes.size(); i++)
     {
@@ -161,9 +155,7 @@ void cargarCategorias(vector<Categoria> &categorias)
         Categoria temp(idi,nom);
         categorias.push_back(temp);
     }
-    cout << "Cargando categorias..." << endl;
-    sleepcp(1000);
-    cout << "OK..." << endl;
+    archivo.close();
     /*
     for (int i = 0; i < categorias.size(); i++)
     {
@@ -189,9 +181,7 @@ void cargarDepartamentos(vector<Departamento> &departamentos)
         Departamento temp(idi,nom);
         departamentos.push_back(temp);
     }
-    cout << "Cargando departamentos..." << endl;
-    sleepcp(1000);
-    cout << "OK..." << endl;
+    archivo.close();
     /*
     for (int i = 0; i < departamentos.size(); i++)
     {
@@ -203,10 +193,9 @@ void cargarDepartamentos(vector<Departamento> &departamentos)
 }
 
 
-bool login(string &user, string &pass, vector<Cuenta> cuentas)
+bool login(string &user, string &pass, vector<Cuenta> cuentas, int &permiso, int &id_Persona)
 {
     bool cont = true;
-
     printLogin(user, pass);
     bool encontrado = false;
     for (int i = 0; i < cuentas.size(); i++)
@@ -214,18 +203,48 @@ bool login(string &user, string &pass, vector<Cuenta> cuentas)
         if(cuentas.at(i).getUsuario() == user){
             if(cuentas.at(i).getPass() == pass){
                 encontrado=true;
-                i=cuentas.size();
+                permiso = cuentas.at(i).getPermiso();
+                id_Persona = cuentas.at(i).getId_Persona();
                 cout << "Datos correctos"<<endl;
+                i=cuentas.size();
                 return true;
             }else{
                 cout << "Contraseña incorrecta"<<endl;
+                permiso=0;
+                id_Persona=0;
                 return false;
             }
-        }else if(i==cuentas.size()-1){
+        }else if(i==cuentas.size()-1 && encontrado ==false){
             cout<<"La cuenta no existe"<<endl;
+            permiso=0;
+            id_Persona=0;
             return false;
         }
     }
+}
+
+string getNombreUsr(int permiso, int id_Persona, vector<Empleado> empleados, vector<Cliente> clientes){
+    string temp;
+    if(permiso==2||permiso==3){
+        for (int i = 0; i < empleados.size(); i++)
+        {
+            if(empleados.at(i).getId_Empleado() == id_Persona){
+                temp = empleados.at(i).getNombre();
+                temp += " "+empleados.at(i).getApellido();
+                i=empleados.size();
+            }
+        }
+    }else{
+        for (int j = 0; j < clientes.size(); j++)
+        {
+            if(clientes.at(j).getId_Cliente() == id_Persona){
+                temp = clientes.at(j).getNombre();
+                temp += " "+clientes.at(j).getApellido();
+                j=clientes.size();
+            }
+        }
+    }
+    return temp;
 }
 
 int main()
@@ -253,22 +272,58 @@ int main()
     vector<Categoria> categorias;
     vector<Cliente> clientes;
     vector<Departamento> departamentos;
+    cout << "Cargando cuentas..." << endl;
     cargarCuentas(cuentas);
+    sleepcp(500);
+    cout << "OK..." << endl;
+    cout << "Cargando Empleados..." << endl;
     cargarEmpleados(empleados);
+    sleepcp(500);
+    cout << "OK..." << endl;
+    cout << "Cargando categorias..." << endl;
     cargarCategorias(categorias);
+    sleepcp(500);
+    cout << "OK..." << endl;
+    cout << "Cargando clientes..." << endl;
     cargarClientes(clientes);
+    sleepcp(500);
+    cout << "OK..." << endl;
+    cout << "Cargando departamentos..." << endl;
     cargarDepartamentos(departamentos);
+    sleepcp(500);
+    cout << "OK..." << endl;
+    sleepcp(500);
+    clear(SO);
+    printTitulo();
 
+    string usuario, pass, nombre;
+    int permiso, id_Persona;  
 
-    string usuario, pass;
+    if(login(usuario, pass, cuentas,permiso,id_Persona)){
 
-    if(login(usuario, pass, cuentas)){
-
+        int opcion;
+        sleepcp(2500);
         //CODIGO DEL PROGRAMA
         clear(SO);
         system("color 6");
         printTitulo();
-        
+        nombre=getNombreUsr(permiso, id_Persona, empleados ,clientes);
+        printBienvenida(nombre);
+        sleepcp(2500);
+        clear(SO);
+        system("color 3");
+        printTitulo();
+        printMain(permiso);
+        cout<<"\t\t\t\t\tOPCION: ";
+        cin>>opcion;
+        if(permiso==1){
+            
+        }else if(permiso==2){
+
+        }else{
+
+        }
+
 
 
     }
