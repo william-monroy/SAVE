@@ -10,17 +10,18 @@
     #include <unistd.h>
 #endif
 
-
-#include "Util.h"
-#include "Img.h"
-#include "Cliente.h"
-#include "Empleado.h"
-#include "Categoria.h"
-#include "Departamento.h"
-#include "Factura.h"
-#include "Producto.h"
-
 using namespace std;
+
+#include "Cuenta.h"
+#include "Departamento.h"
+#include "Cliente.h"
+#include "Categoria.h"
+#include "Empleado.h"
+#include "Producto.h"
+#include "Factura.h"
+#include "Img.h"
+#include "Util.h"
+
 
 void sleepcp(int milliseconds);
 
@@ -310,19 +311,39 @@ int main()
         nombre=getNombreUsr(permiso, id_Persona, empleados ,clientes);
         printBienvenida(nombre);
         sleepcp(2500);
-        clear(SO);
-        system("color 3");
-        printTitulo();
-        printMain(permiso);
-        cout<<"\t\t\t\t\tOPCION: ";
-        cin>>opcion;
-        if(permiso==1){
-            
-        }else if(permiso==2){
+        bool cont=true;
+        while (cont)
+        {
+            clear(SO);
+            system("color 3");
+            printTitulo();
+            printMain(permiso);
+            cout<<"\t\t\t\t\tOPCION: ";
+            cin>>opcion;
+            switch (opcion)
+            {
+            case 1:
+                clear(SO);
+                printTitulo();
+                printMisDatos(permiso,empleados,clientes,departamentos,id_Persona);
+                pause(SO);
+                break;
 
-        }else{
+            case 5:
+                cont=false;
+            default:
+                break;
+            }
+            if(permiso==1){
 
+            }else if(permiso==2){
+
+            }else{
+
+            }
         }
+        
+        
 
 
 

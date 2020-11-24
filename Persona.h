@@ -2,9 +2,8 @@
 #define Persona_h
 
 
-#include <iostream>
 
-using namespace std;
+#include "Cuenta.h"
 
 class Persona
 {

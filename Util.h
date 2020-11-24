@@ -32,6 +32,6 @@ void pause(string SO)
 /*
 void color(int num){
     string cmd = to_string(num);
-    char const *cmd2 = cmd.c_str();
-    system(strcat("color ",cmd2));   
-}  */
+    //char const *cmd2 = cmd.c_str();
+    system(strcat("color "+cmd));   
+} */ 

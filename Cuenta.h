@@ -1,6 +1,7 @@
-#include <iostream>
+#ifndef Cuenta_h
+#define Cuenta_h
 
-using namespace std;
+
 
 class Cuenta
 {
@@ -82,3 +83,5 @@ void Cuenta::mostrarCuenta(){
     cout << "Permiso: " << this->permiso << endl;
     cout << "ID: " << this->id_Persona << endl;
 }
+
+#endif
