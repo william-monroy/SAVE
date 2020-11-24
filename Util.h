@@ -30,8 +30,23 @@ void pause(string SO)
     }
 }
 
-void color(int num){
-    string cmd = "color "+ to_string(num);
+void color(int num)
+{
+    string cmd = "color " + to_string(num);
     char const *cmd2 = cmd.c_str();
-    system(cmd2);   
-} 
+    system(cmd2);
+}
+
+string formatStr(string palabra, int maxSize)
+{
+    int len = palabra.length();
+    string salida = palabra;
+    if (len < maxSize)
+    {
+        for (int i = 0; i < maxSize - len; i++)
+        {
+            salida += " ";
+        }
+    }
+    return salida;
+}

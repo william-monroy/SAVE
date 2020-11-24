@@ -794,8 +794,142 @@ int main()
                 }
                 else{
                     clear(SO);
-                    printTitulo();
-                    printCRUDp("Clientes");
+                    bool conticli=true;
+                    while (conticli)
+                    {
+                        clear(SO);
+                        printTitulo();
+                        printCRUDp("Clientes");
+                        int opclientes;
+                        cout << "\t\t\t\t\tOPCION: ";
+                        cin >> opclientes;
+                        switch (opclientes)
+                        {
+                        case 1:
+                        {
+                            //Consultar
+                            clear(SO);
+                            cout << "==============================================================================================" << endl;
+                            cout << "==================================== CONSULTA DE CLIENTES ====================================" << endl;
+                            cout << "==============================================================================================\n"<< endl;
+                            cout << "ID    NOMBRE                APELLIDO              INE        EDAD  USUARIO     PASSWORD"<<endl;
+                            for (int i = 0; i < clientes.size(); i++)
+                            {
+                                string dat1=to_string(clientes.at(i).getId_Cliente());
+                                string dat2=clientes.at(i).getNombre();
+                                string dat3=clientes.at(i).getApellido();
+                                string dat4=to_string(clientes.at(i).getIne());
+                                string dat5=to_string(clientes.at(i).getEdad());
+                                string dat6=clientes.at(i).getCuenta().getUsuario();
+                                string dat7=clientes.at(i).getCuenta().getPass();
+                                cout << formatStr(dat1,4)<<"  "<<formatStr(dat2,20)<<"  "<<formatStr(dat3,20)<<"  "<<formatStr(dat4,9)<<"  "<<formatStr(dat5,4)<<"  "<<formatStr(dat6,10)<<"  "<<formatStr(dat7,10)<<endl;
+                            }
+                            cout<<endl;
+                            pause(SO);
+                            break;
+                        }
+                        case 2:
+                        {
+                            //Modificar
+                            clear(SO);
+                            int id_cliente;
+                            cout << "==============================================================================================" << endl;
+                            cout << "==================================== CONSULTA DE CLIENTES ====================================" << endl;
+                            cout << "==============================================================================================\n"<< endl;
+                            cout << "ID    NOMBRE                APELLIDO              INE        EDAD  USUARIO     PASSWORD"<<endl;
+                            for (int i = 0; i < clientes.size(); i++)
+                            {
+                                string dat1=to_string(clientes.at(i).getId_Cliente());
+                                string dat2=clientes.at(i).getNombre();
+                                string dat3=clientes.at(i).getApellido();
+                                string dat4=to_string(clientes.at(i).getIne());
+                                string dat5=to_string(clientes.at(i).getEdad());
+                                string dat6=clientes.at(i).getCuenta().getUsuario();
+                                string dat7=clientes.at(i).getCuenta().getPass();
+                                cout << formatStr(dat1,4)<<"  "<<formatStr(dat2,20)<<"  "<<formatStr(dat3,20)<<"  "<<formatStr(dat4,9)<<"  "<<formatStr(dat5,4)<<"  "<<formatStr(dat6,10)<<"  "<<formatStr(dat7,10)<<endl;
+                            }
+                            cout<<endl;
+                            cout<<"ID Cliente: ";
+                            cin>>id_cliente;
+                            bool modCliecont=true;
+                            while (modCliecont)
+                            {
+                                clear(SO);
+                                modfCliente(clientes,id_cliente);
+                                int opcModcli;
+                                cout << "\t\t\t\t\tOPCION: ";
+                                cin >> opcModcli;
+                                switch (opcModcli)
+                                {
+                                case 1:
+                                    //Modificar Nombre
+                                    clear(SO);
+                                    
+
+                                    pause(SO);
+                                    break;
+                                case 2:
+                                    //Modificar Apellido
+                                    clear(SO);
+                                    
+
+                                    pause(SO);
+                                    break;
+                                case 3:
+                                    //Modificar INE
+                                    clear(SO);
+                                    
+
+                                    pause(SO);
+                                    break;
+                                case 4:
+                                    //Modificar Edad
+                                    clear(SO);
+                                    
+
+                                    pause(SO);
+                                    break;
+                                case 5:
+                                    //Modificar usuario
+                                    clear(SO);
+                                    
+
+                                    pause(SO);
+                                    break;
+                                case 6:
+                                    //Modificar contrasena
+                                    clear(SO);
+                                    
+
+                                    pause(SO);
+                                    break;
+                                case 7:
+                                    modCliecont=false;
+                                default:                                    
+                                    cout<<endl<<"ERROR: Opcion incorrecta."<<endl<<endl;
+                                    pause(SO);
+                                    break;
+                                }
+
+                            }
+                            pause(SO);
+                            break;
+                        }
+                        case 3:
+                        {
+                            //regresar
+                            conticli=false;
+                            break;
+                        }
+                        default:
+                        {
+                            cout<<endl<<"ERROR: Opcion incorrecta."<<endl<<endl;
+                            pause(SO);
+                            break;
+                        }
+                        }
+                    }
+                    
                     
                 }
                 pause(SO);
