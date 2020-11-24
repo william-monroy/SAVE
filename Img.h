@@ -189,5 +189,18 @@ printf("    `8.       ");
 cout<<"5) Modificar Usuario"<<endl;
 printf("     `8       ");
 cout<<"6) Modificar Contrasena"<<endl;
-cout<<"\t\t\t\t\t7) Regresar";
+cout<<"\t\t\t\t\t7) Regresar"<<endl;
+}
+
+void modfProd(vector<Producto> productos, int id_prod){
+printf("b.            DATOS\n");
+printf("88b           \n");
+printf("888b.         ");
+cout<<"ID: "<<productos.at(id_prod).getId_Producto()<<endl;
+printf("88888b        1) Modificar Nombre\n");
+printf("888888b.      2) Modificar Descripcion\n");
+printf("8888P\"        3) Modificar Stock\n");
+printf("P\" `8.        4) Modificar Precio\n");
+printf("    `8.       5) Modificar Categoria\n");
+printf("     `8       6) Salir\n");
 }

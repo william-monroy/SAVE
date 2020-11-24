@@ -511,6 +511,7 @@ int main()
                                     break;
                                 case 7:
                                     co = false;
+                                    break;
                                 default:
                                     cout << "ERROR: Opcion Incorrecta\n"
                                          << endl;
@@ -721,7 +722,8 @@ int main()
                     clear(SO);
                     cout << "=============================================" << endl;
                     cout << "===============MENU DE COMPRAS===============" << endl;
-                    cout << "=============================================\n"<< endl;
+                    cout << "=============================================\n"
+                         << endl;
                     cout << "ID    NOMBRE DEL PRODUCTO                  STOCK       PRECIO" << endl;
                     string d1, d2, d3, d4;
                     int len;
@@ -772,29 +774,33 @@ int main()
                                 d4 += " ";
                             }
                         }
-                        if (opcate-1==productos.at(i).getId_Cate())
+                        if (opcate - 1 == productos.at(i).getId_Cate())
                         {
                             cout << d1 << "  " << d2 << "  " << d3 << "  " << d4 << endl;
                         }
                     }
-                    cout<<endl<<"Codigo de Producto: ";
+                    cout << endl
+                         << "Codigo de Producto: ";
                     int codi, cant;
-                    cin>>codi;
+                    cin >> codi;
                     clear(SO);
                     cout << "=============================================" << endl;
                     cout << "===============MENU DE COMPRAS===============" << endl;
-                    cout << "=============================================\n"<< endl;
-                    cout<<"ID: "<<productos.at(codi).getId_Producto()<<endl;
-                    cout<<"Nombre: "<<productos.at(codi).getNombre()<<endl;
-                    cout<<"Descripcion: "<<productos.at(codi).getDescripcion()<<endl;
-                    cout<<"Precio: "<<productos.at(codi).getPrecio()<<endl<<endl;
-                    cout<<"Cantidad: ";
-                    cin>>cant;
+                    cout << "=============================================\n"
+                         << endl;
+                    cout << "ID: " << productos.at(codi).getId_Producto() << endl;
+                    cout << "Nombre: " << productos.at(codi).getNombre() << endl;
+                    cout << "Descripcion: " << productos.at(codi).getDescripcion() << endl;
+                    cout << "Precio: " << productos.at(codi).getPrecio() << endl
+                         << endl;
+                    cout << "Cantidad: ";
+                    cin >> cant;
                     //cantidad*precio
                 }
-                else{
+                else
+                {
                     clear(SO);
-                    bool conticli=true;
+                    bool conticli = true;
                     while (conticli)
                     {
                         clear(SO);
@@ -811,20 +817,21 @@ int main()
                             clear(SO);
                             cout << "==============================================================================================" << endl;
                             cout << "==================================== CONSULTA DE CLIENTES ====================================" << endl;
-                            cout << "==============================================================================================\n"<< endl;
-                            cout << "ID    NOMBRE                APELLIDO              INE        EDAD  USUARIO     PASSWORD"<<endl;
+                            cout << "==============================================================================================\n"
+                                 << endl;
+                            cout << "ID    NOMBRE                APELLIDO              INE        EDAD  USUARIO     PASSWORD" << endl;
                             for (int i = 0; i < clientes.size(); i++)
                             {
-                                string dat1=to_string(clientes.at(i).getId_Cliente());
-                                string dat2=clientes.at(i).getNombre();
-                                string dat3=clientes.at(i).getApellido();
-                                string dat4=to_string(clientes.at(i).getIne());
-                                string dat5=to_string(clientes.at(i).getEdad());
-                                string dat6=clientes.at(i).getCuenta().getUsuario();
-                                string dat7=clientes.at(i).getCuenta().getPass();
-                                cout << formatStr(dat1,4)<<"  "<<formatStr(dat2,20)<<"  "<<formatStr(dat3,20)<<"  "<<formatStr(dat4,9)<<"  "<<formatStr(dat5,4)<<"  "<<formatStr(dat6,10)<<"  "<<formatStr(dat7,10)<<endl;
+                                string dat1 = to_string(clientes.at(i).getId_Cliente());
+                                string dat2 = clientes.at(i).getNombre();
+                                string dat3 = clientes.at(i).getApellido();
+                                string dat4 = to_string(clientes.at(i).getIne());
+                                string dat5 = to_string(clientes.at(i).getEdad());
+                                string dat6 = clientes.at(i).getCuenta().getUsuario();
+                                string dat7 = clientes.at(i).getCuenta().getPass();
+                                cout << formatStr(dat1, 4) << "  " << formatStr(dat2, 20) << "  " << formatStr(dat3, 20) << "  " << formatStr(dat4, 9) << "  " << formatStr(dat5, 4) << "  " << formatStr(dat6, 10) << "  " << formatStr(dat7, 10) << endl;
                             }
-                            cout<<endl;
+                            cout << endl;
                             pause(SO);
                             break;
                         }
@@ -835,82 +842,149 @@ int main()
                             int id_cliente;
                             cout << "==============================================================================================" << endl;
                             cout << "==================================== CONSULTA DE CLIENTES ====================================" << endl;
-                            cout << "==============================================================================================\n"<< endl;
-                            cout << "ID    NOMBRE                APELLIDO              INE        EDAD  USUARIO     PASSWORD"<<endl;
+                            cout << "==============================================================================================\n"
+                                 << endl;
+                            cout << "ID    NOMBRE                APELLIDO              INE        EDAD  USUARIO     PASSWORD" << endl;
                             for (int i = 0; i < clientes.size(); i++)
                             {
-                                string dat1=to_string(clientes.at(i).getId_Cliente());
-                                string dat2=clientes.at(i).getNombre();
-                                string dat3=clientes.at(i).getApellido();
-                                string dat4=to_string(clientes.at(i).getIne());
-                                string dat5=to_string(clientes.at(i).getEdad());
-                                string dat6=clientes.at(i).getCuenta().getUsuario();
-                                string dat7=clientes.at(i).getCuenta().getPass();
-                                cout << formatStr(dat1,4)<<"  "<<formatStr(dat2,20)<<"  "<<formatStr(dat3,20)<<"  "<<formatStr(dat4,9)<<"  "<<formatStr(dat5,4)<<"  "<<formatStr(dat6,10)<<"  "<<formatStr(dat7,10)<<endl;
+                                string dat1 = to_string(clientes.at(i).getId_Cliente());
+                                string dat2 = clientes.at(i).getNombre();
+                                string dat3 = clientes.at(i).getApellido();
+                                string dat4 = to_string(clientes.at(i).getIne());
+                                string dat5 = to_string(clientes.at(i).getEdad());
+                                string dat6 = clientes.at(i).getCuenta().getUsuario();
+                                string dat7 = clientes.at(i).getCuenta().getPass();
+                                cout << formatStr(dat1, 4) << "  " << formatStr(dat2, 20) << "  " << formatStr(dat3, 20) << "  " << formatStr(dat4, 9) << "  " << formatStr(dat5, 4) << "  " << formatStr(dat6, 10) << "  " << formatStr(dat7, 10) << endl;
                             }
-                            cout<<endl;
-                            cout<<"ID Cliente: ";
-                            cin>>id_cliente;
-                            bool modCliecont=true;
+                            cout << endl;
+                            cout << "ID Cliente: ";
+                            cin >> id_cliente;
+                            bool modCliecont = true;
                             while (modCliecont)
                             {
                                 clear(SO);
-                                modfCliente(clientes,id_cliente);
+                                modfCliente(clientes, id_cliente);
                                 int opcModcli;
                                 cout << "\t\t\t\t\tOPCION: ";
                                 cin >> opcModcli;
+                                string nnom, nape, nine, neda, nusr, npss;
                                 switch (opcModcli)
                                 {
                                 case 1:
-                                    //Modificar Nombre
+                                {
+                                    char nom[40];
                                     clear(SO);
-                                    
+                                    printTitulo();
+                                    cout << "ID: " << clientes.at(id_cliente).getId_Cliente() << endl;
+                                    cout << "Nombre Actual: " << clientes.at(id_cliente).getNombre() << endl;
+                                    cout << "Nuevo Nombre: ";
+                                    cin.getline(nom, 40);
+                                    nnom = charToString(nom);
 
-                                    pause(SO);
-                                    break;
-                                case 2:
-                                    //Modificar Apellido
-                                    clear(SO);
-                                    
+                                    //Escribir cambios en csv
 
-                                    pause(SO);
-                                    break;
-                                case 3:
-                                    //Modificar INE
-                                    clear(SO);
-                                    
-
-                                    pause(SO);
-                                    break;
-                                case 4:
-                                    //Modificar Edad
-                                    clear(SO);
-                                    
-
-                                    pause(SO);
-                                    break;
-                                case 5:
-                                    //Modificar usuario
-                                    clear(SO);
-                                    
-
-                                    pause(SO);
-                                    break;
-                                case 6:
-                                    //Modificar contrasena
-                                    clear(SO);
-                                    
-
-                                    pause(SO);
-                                    break;
-                                case 7:
-                                    modCliecont=false;
-                                default:                                    
-                                    cout<<endl<<"ERROR: Opcion incorrecta."<<endl<<endl;
+                                    cout << nnom;
                                     pause(SO);
                                     break;
                                 }
+                                case 2:
+                                {
+                                    char ape[50];
+                                    clear(SO);
+                                    printTitulo();
+                                    cout << "ID: " << clientes.at(id_cliente).getId_Cliente() << endl;
+                                    cout << "Apellido Actual: " << clientes.at(id_cliente).getApellido() << endl;
+                                    cout << "Nuevo Apellido: ";
+                                    cin.getline(ape, 50);
+                                    nape = charToString(ape);
 
+                                    //Escribir cambios en csv
+
+                                    cout << ape;
+                                    pause(SO);
+                                    break;
+                                }
+                                case 3:
+                                {
+                                    char ine[15];
+                                    clear(SO);
+                                    printTitulo();
+                                    cout << "ID: " << clientes.at(id_cliente).getId_Cliente() << endl;
+                                    cout << "INE Actual: " << clientes.at(id_cliente).getIne() << endl;
+                                    cout << "Nuevo INE: ";
+                                    cin.getline(ine, 15);
+                                    nine = charToString(ine);
+
+                                    //Escribir cambios en csv
+
+                                    cout << nine;
+                                    pause(SO);
+                                    break;
+                                }
+                                case 4:
+                                {
+                                    char eda[3];
+                                    clear(SO);
+                                    printTitulo();
+                                    cout << "ID: " << clientes.at(id_cliente).getId_Cliente() << endl;
+                                    cout << "Edad Actual: " << clientes.at(id_cliente).getEdad() << endl;
+                                    cout << "Nuevo Edad: ";
+                                    cin.getline(eda, 3);
+                                    neda = charToString(eda);
+
+                                    //Escribir cambios en csv
+
+                                    cout << neda;
+                                    pause(SO);
+                                    break;
+                                }
+                                case 5:
+                                {
+                                    char usr[15];
+                                    clear(SO);
+                                    printTitulo();
+                                    cout << "ID: " << clientes.at(id_cliente).getId_Cliente() << endl;
+                                    cout << "Usuario Actual: " << clientes.at(id_cliente).getCuenta().getUsuario() << endl;
+                                    cout << "Nuevo Usuario: ";
+                                    cin.getline(usr, 10);
+                                    nusr = charToString(usr);
+
+                                    //Escribir cambios en csv
+
+                                    cout << nusr;
+                                    pause(SO);
+                                    break;
+                                }
+                                case 6:
+                                {
+                                    char pss[15];
+                                    clear(SO);
+                                    printTitulo();
+                                    cout << "ID: " << clientes.at(id_cliente).getId_Cliente() << endl;
+                                    cout << "Password Actual: " << clientes.at(id_cliente).getCuenta().getPass() << endl;
+                                    cout << "Nuevo Password: ";
+                                    cin.getline(pss, 15);
+                                    npss = charToString(pss);
+
+                                    //Escribir cambios en csv
+
+                                    cout << npss;
+                                    pause(SO);
+                                    break;
+                                }
+                                case 7:
+                                {
+                                    modCliecont = false;
+                                    break;
+                                }
+                                default:
+                                {
+                                    cout << "ERROR: Opcion Incorrecta\n"
+                                         << endl;
+                                    pause(SO);
+                                    break;
+                                }
+                                }
                             }
                             pause(SO);
                             break;
@@ -918,19 +992,20 @@ int main()
                         case 3:
                         {
                             //regresar
-                            conticli=false;
+                            conticli = false;
+
                             break;
                         }
                         default:
                         {
-                            cout<<endl<<"ERROR: Opcion incorrecta."<<endl<<endl;
+                            cout << endl
+                                 << "ERROR: Opcion incorrecta." << endl
+                                 << endl;
                             pause(SO);
                             break;
                         }
                         }
                     }
-                    
-                    
                 }
                 pause(SO);
                 break;
@@ -938,14 +1013,221 @@ int main()
             case 3:
             {
                 clear(SO);
-
+                //
+                
                 pause(SO);
                 break;
-            }
             case 4:
             {
                 clear(SO);
+                if (permiso == 1)
+                {
+                }
+                else
+                {
+                    bool contiprod = true;
+                    while (contiprod)
+                    {
+                        clear(SO);
+                        printTitulo();
+                        printCRUDp("Productos");
+                        int opprod;
+                        cout << "\t\t\t\t\tOPCION: ";
+                        cin >> opprod;
+                        switch (opprod)
+                        {
+                        //****************************************************************
+                        case 1:
+                        {
+                            //Consultar
+                            clear(SO);
+                            cout << "===============================================================================================" << endl;
+                            cout << "==================================== CONSULTA DE PRODUCTOS ====================================" << endl;
+                            cout << "===============================================================================================\n"
+                                 << endl;
+                            cout << "ID    NOMBRE                DESCRIPCION                STOCK         PRECIO        ID_CATEGORIA" << endl;
+                            for (int i = 0; i < productos.size(); i++)
+                            {
+                                string dat1 = to_string(productos.at(i).getId_Producto());
+                                string dat2 = productos.at(i).getNombre();
+                                string dat3 = productos.at(i).getDescripcion();
+                                string dat4 = to_string(productos.at(i).getStock());
+                                string dat5 = to_string(productos.at(i).getPrecio());
+                                string dat6 = to_string(productos.at(i).getId_Cate());
+                                cout << formatStr(dat1, 4) << "  " << formatStr(dat2, 35) << "  " << formatStr(dat3, 35) << "  " << formatStr(dat4, 12) << "  " << formatStr(dat5, 12) << "  " << formatStr(dat6, 12) << endl;
+                            }
+                            cout << endl;
+                            pause(SO);
+                            break;
+                        }
+                        case 2:
+                        {
+                            //Modificar
+                            clear(SO);
+                            int id_producto;
+                            cout << "===============================================================================================" << endl;
+                            cout << "==================================== CONSULTA DE PRODUCTOS ====================================" << endl;
+                            cout << "===============================================================================================\n"
+                                 << endl;
+                            cout << "ID    NOMBRE                               DESCRIPCION                          STOCK         PRECIO        ID_CATEGORIA" << endl;
+                            for (int i = 0; i < productos.size(); i++)
+                            {
+                                string dat1 = to_string(productos.at(i).getId_Producto());
+                                string dat2 = productos.at(i).getNombre();
+                                string dat3 = productos.at(i).getDescripcion();
+                                string dat4 = to_string(productos.at(i).getStock());
+                                string dat5 = to_string(productos.at(i).getPrecio());
+                                string dat6 = to_string(productos.at(i).getId_Cate());
+                                cout << formatStr(dat1, 4) << "  " << formatStr(dat2, 35) << "  " << formatStr(dat3, 35) << "  " << formatStr(dat4, 12) << "  " << formatStr(dat5, 12) << "  " << formatStr(dat6, 12) << endl;
+                            }
+                            cout << endl;
+                            cout << "ID Producto: ";
+                            cin >> id_producto;
+                            bool modProdcont = true;
+                            while (modProdcont)
+                            {
+                                clear(SO);
+                                modfProd(productos, id_producto);
+                                int opcModprod;
+                                cout << "\t\t\t\t\tOPCION: ";
+                                cin >> opcModprod;
+                                string nnom, nape, nine, neda, nusr, npss;
+                                switch (opcModprod)
+                                {
+                                case 1:
+                                {
+                                    char nom[40];
+                                    clear(SO);
+                                    printTitulo();
+                                    cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
+                                    cout << "Nombre Actual: " << productos.at(id_producto).getNombre() << endl;
+                                    cout << "Nuevo Nombre: ";
+                                    cin.getline(nom, 40);
+                                    nnom = charToString(nom);
 
+                                    //Escribir cambios en csv
+
+                                    cout << nnom << endl;
+                                    pause(SO);
+                                    break;
+                                }
+                                case 2:
+                                {
+                                    char desc[50];
+                                    clear(SO);
+                                    printTitulo();
+                                    cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
+                                    cout << "Descripcion Actual: " << productos.at(id_producto).getDescripcion() << endl;
+                                    cout << "Nueva Descripcion: ";
+                                    cin.getline(desc, 50);
+                                    string ndesc = charToString(desc);
+
+                                    //Escribir cambios en csv
+
+                                    cout << ndesc << endl;
+                                    pause(SO);
+                                    break;
+                                }
+                                case 3:
+                                {
+                                    char stock[15];
+                                    clear(SO);
+                                    printTitulo();
+                                    cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
+                                    cout << "Stock Actual: " << productos.at(id_producto).getStock() << endl;
+                                    cout << "Nuevo Stock: ";
+                                    cin.getline(stock, 15);
+                                    string nstock = charToString(stock);
+
+                                    //Escribir cambios en csv
+
+                                    cout << nstock << endl;
+                                    pause(SO);
+                                    break;
+                                }
+                                case 4:
+                                {
+                                    char prc[10];
+                                    clear(SO);
+                                    printTitulo();
+                                    cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
+                                    cout << "Precio Actual: " << productos.at(id_producto).getPrecio() << endl;
+                                    cout << "Nuevo Precio: ";
+                                    cin.getline(prc, 10);
+                                    string nprc = charToString(prc);
+
+                                    //Escribir cambios en csv
+
+                                    cout << nprc << endl;
+                                    pause(SO);
+                                    break;
+                                }
+                                case 5:
+                                {
+                                    clear(SO);
+                                    int id_cat;
+                                    cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
+                                    cout << "Categoria Actual: " << categorias.at(productos.at(id_producto).getId_Cate()).getNombre() << endl;
+                                    cout << "Nuevo Categoria: " << endl
+                                         << endl;
+                                    cout << "==========================================" << endl;
+                                    cout << "================CATEGORIAS================" << endl;
+                                    cout << "==========================================\n"
+                                         << endl;
+                                    cout << "ID    NOMBRE" << endl;
+                                    for (int i = 0; i < categorias.size(); i++)
+                                    {
+                                        string id_c = to_string(categorias.at(i).getId_Categoria());
+                                        string nom_c = categorias.at(i).getNombre();
+                                        cout << formatStr(id_c, 4) << "  " << formatStr(nom_c, 20) << endl;
+                                    }
+                                    cout << endl;
+                                    cout << "ID Categoria: ";
+                                    cin >> id_cat;
+
+                                    //Escribir cambios en csv
+
+                                    cout << id_cat << endl;
+                                    pause(SO);
+                                    break;
+                                }
+                                case 6:
+                                {
+                                    modProdcont = false;
+                                    break;
+                                }
+                                default:
+                                {
+                                    cout << "ERROR: Opcion Incorrecta\n"
+                                         << endl;
+                                    pause(SO);
+                                    break;
+                                }
+                                }
+                            }
+                            pause(SO);
+                            break;
+                        }
+                        case 3:
+                        {
+                            //regresar
+                            contiprod = false;
+
+                            break;
+                        }
+                        default:
+                        {
+                            cout << endl
+                                 << "ERROR: Opcion incorrecta." << endl
+                                 << endl;
+                            pause(SO);
+                            break;
+                        }
+                            //****************************************************************
+                        }
+                        //
+                    }
+                }
                 pause(SO);
                 break;
             }
@@ -958,17 +1240,18 @@ int main()
                 break;
             }
             }
-            if (permiso == 1)
-            {
-            }
-            else if (permiso == 2)
-            {
-            }
-            else
-            {
+                if (permiso == 1)
+                {
+                }
+                else if (permiso == 2)
+                {
+                }
+                else
+                {
+                }
             }
         }
-    }
 
-    return 0;
+        return 0;
+    }
 }
