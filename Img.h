@@ -16,7 +16,7 @@ void printMain(int permiso){
 if (permiso==1){
 printf("████            █████████               \n");
 printf("█──█            █───█───█               1) Mis Datos\n");
-printf("█──█    █████████───█───█               2) Lista de Productos\n");
+printf("█──█    █████████───█───█               2) Agregar Producto\n");
 printf("█──█    █───█───█───█───██████████      3) Detalle de Compra\n");
 printf("█──█    █───█───█───█───█──█──█──█      4) Pagar\n");
 printf("█──█    █───█───█───█───█──█──█──█      5) Salir\n");

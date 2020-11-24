@@ -29,9 +29,9 @@ void pause(string SO)
         cin >> temp;
     }
 }
-/*
+
 void color(int num){
-    string cmd = to_string(num);
-    //char const *cmd2 = cmd.c_str();
-    system(strcat("color "+cmd));   
-} */ 
+    string cmd = "color "+ to_string(num);
+    char const *cmd2 = cmd.c_str();
+    system(cmd2);   
+} 

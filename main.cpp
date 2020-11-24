@@ -192,6 +192,37 @@ void cargarDepartamentos(vector<Departamento> &departamentos)
     */
 }
 
+void cargarProductos(vector<Producto> &productos)
+{
+    ifstream archivo;
+    archivo.open("productos.csv");
+    string id_prod, nom, desc, stock, precio, id_cat;
+    while (!archivo.eof())
+    {
+        string linea;
+        linea.replace(linea.length(), 1, "");
+        getline(archivo, id_prod, ',');
+        getline(archivo, nom, ',');
+        getline(archivo, desc, ',');
+        getline(archivo, stock, ',');
+        getline(archivo, precio, ',');
+        getline(archivo, id_cat);
+        int id_prodi = atoi(id_prod.c_str());
+        int id_cati = atoi(id_cat.c_str());
+        double stockd = atof(stock.c_str());
+        double preciod = atof(precio.c_str());
+        Producto temp(id_cati, nom, desc, stockd, preciod, id_cati);
+        productos.push_back(temp);
+    }
+    archivo.close();
+
+    for (int i = 0; i < productos.size(); i++)
+    {
+        cout << "\nProducto " << i + 1 << endl;
+        productos.at(i).mostrarProducto();
+    }
+}
+
 bool login(string &user, string &pass, vector<Cuenta> cuentas, int &permiso, int &id_Persona)
 {
     bool cont = true;
@@ -273,7 +304,7 @@ string charToString(char c[])
 
 int main()
 {
-    system("color 2");
+    color(2);
     cout << endl;
     string SO = "";
     SetConsoleOutputCP(CP_UTF8);
@@ -290,12 +321,12 @@ int main()
 #endif
     clear(SO);
     printTitulo();
-
     vector<Cuenta> cuentas;
     vector<Empleado> empleados;
     vector<Categoria> categorias;
     vector<Cliente> clientes;
     vector<Departamento> departamentos;
+    vector<Producto> productos;
     cout << "Cargando cuentas..." << endl;
     cargarCuentas(cuentas);
     sleepcp(500);
@@ -316,6 +347,10 @@ int main()
     cargarDepartamentos(departamentos);
     sleepcp(500);
     cout << "OK..." << endl;
+    cout << "Cargando productos..." << endl;
+    cargarProductos(productos);
+    sleepcp(500);
+    cout << "OK..." << endl;
     sleepcp(500);
     clear(SO);
     printTitulo();
@@ -330,7 +365,7 @@ int main()
         sleepcp(2500);
         //CODIGO DEL PROGRAMA
         clear(SO);
-        system("color 6");
+        color(6);
         printTitulo();
         nombre = getNombreUsr(permiso, id_Persona, empleados, clientes);
         printBienvenida(nombre);
@@ -339,7 +374,7 @@ int main()
         while (cont)
         {
             clear(SO);
-            system("color 3");
+            color(3);
             printTitulo();
             printMain(permiso);
             cout << "\t\t\t\t\tOPCION: ";
@@ -668,12 +703,97 @@ int main()
             case 2:
             {
                 clear(SO);
-                if(permiso==1){
+                if (permiso == 1)
+                {
+                    cout << "=============================================" << endl;
+                    cout << "===============MENU DE COMPRAS===============" << endl;
+                    cout << "=============================================\n"
+                         << endl;
+                    cout << "Seleccione categoria:" << endl;
+                    for (int i = 0; i < categorias.size(); i++)
+                    {
+                        cout << to_string(i + 1) << " ) " << categorias.at(i).getNombre() << endl;
+                    }
+                    cout << "\nOPCION: ";
+                    int opcate;
+                    cin >> opcate;
+                    clear(SO);
+                    cout << "=============================================" << endl;
+                    cout << "===============MENU DE COMPRAS===============" << endl;
+                    cout << "=============================================\n"
+                         << endl;
+                    /*char id[4] = {' ',' ',' ',' '};
+                    char nombre[25] = {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
+                    char stock[10]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
+                    char precio[10]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
+                    int cont;
+                    for (int i = 0; i < productos.size(); i++)
+                    {
+                        cont=0;
+                        for (int j = 0; i < 4; j++)
+                        {
+                            id[j] = to_string(productos.at(i).getId_Producto())[cont];
+                            nombre[j] = productos.at(i).getNombre()[cont];
+                            stock[j] = to_string(productos.at(i).getStock())[cont];
+                            precio[j] = to_string(productos.at(i).getPrecio())[cont];
+                            cont++;
+                        }
+                        cout<<"ID    NOMBRE DEL PRODUCTO        STOCK       PRECIO"<<endl;
+                        cout<<id<<nombre<<stock<<precio<<endl;
+                    }*/
+                    cout << "ID    NOMBRE DEL PRODUCTO        STOCK       PRECIO" << endl;
+                    string d1, d2, d3, d4;
+                    int len;
+                    for (int i = 0; i < productos.size(); i++)
+                    {
+                        len = to_string(productos.at(i).getId_Producto()).length();
+                        d1 = to_string(productos.at(i).getId_Producto());
+                        if (len < 4)
+                        {
+                            for (int i = 0; i < 4 - len; i++)
+                            {
+                                d1 += " ";
+                            }
+                        }
 
-                }else if(permiso==2){
+                        len = productos.at(i).getNombre().length();
+                        d2 = productos.at(i).getNombre();
+                        if (len < 35)
+                        {
+                            for (int i = 0; i < 35 - len; i++)
+                            {
+                                d2 += " ";
+                            }
+                        }
+                        //6 decimales
+                        len = to_string(productos.at(i).getStock()).length();
+                        d3 = to_string(productos.at(i).getStock());
+                        if (len < 5)
+                        {
+                            for (int i = 0; i < 5 - len; i++)
+                            {
+                                d3 += " ";
+                            }
+                        }
+                        //6 decimales
+                        len = to_string(productos.at(i).getPrecio()).length();
+                        d4 = to_string(productos.at(i).getPrecio());
+                        if (len < 5)
+                        {
+                            for (int i = 0; i < 5 - len; i++)
+                            {
+                                d4 += " ";
+                            }
+                        }
 
-                }else{
-
+                        cout << d1 << "  " << d2 << "  " << d3 << "  " << d4 << endl;
+                    }
+                }
+                else if (permiso == 2)
+                {
+                }
+                else
+                {
                 }
                 pause(SO);
                 break;

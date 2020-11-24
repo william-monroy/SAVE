@@ -27,6 +27,7 @@ public:
     void setPrecio(double precio);
     int getId_Cate();
     void setId_Cate(int id_Cate);
+    void mostrarProducto();
 };
 
 Producto::Producto()
@@ -101,4 +102,13 @@ int Producto::getId_Cate()
 void Producto::setId_Cate(int id_Cate)
 {
     this->id_Cate = id_Cate;
+}
+void Producto::mostrarProducto()
+{
+    cout << "ID: " << this->id_Producto << endl;
+    cout << "Nombre: " << this->nombre << endl;
+    cout << "Descripcion: " << this->descripcion << endl;
+    cout << "Stock: " << this->stock << endl;
+    cout << "Precio: " << this->precio << endl;
+    cout << "ID Categoria: " << this->id_Cate << endl;
 }
