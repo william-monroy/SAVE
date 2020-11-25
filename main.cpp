@@ -4,7 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <ctime>
-#include <math.h> 
+#include <math.h>
 
 #ifdef _WIN64
 #include <windows.h>
@@ -226,6 +226,50 @@ void cargarProductos(vector<Producto> &productos)
     */
 }
 
+void cargarFacturas(vector<Factura> &facturas)
+{
+    ifstream archivo;
+    archivo.open("facturas.csv");
+    string id_fact, id_cli, dd, mm, aa, id_prod, cant, tot;
+    while (!archivo.eof())
+    {
+        string linea;
+        linea.replace(linea.length(), 1, "");
+        getline(archivo, id_fact, ',');
+        getline(archivo, id_cli, ',');
+        getline(archivo, dd, ',');
+        getline(archivo, mm, ',');
+        getline(archivo, aa, ',');
+        getline(archivo, id_prod, ',');
+        getline(archivo, cant, ',');
+        getline(archivo, tot);
+        int id_facti = atoi(id_fact.c_str());
+        int id_clii = atoi(id_cli.c_str());
+        int ddi = atoi(dd.c_str());
+        int mmi = atoi(mm.c_str());
+        int aai = atoi(aa.c_str());
+        int id_prodi = atoi(id_prod.c_str());
+        double cantd = atof(cant.c_str());
+        double totd = atof(tot.c_str());
+        Fecha ftemp(ddi, mmi, aai);
+        Factura temp(id_facti, id_clii, ftemp, id_prodi, cantd, totd);
+        facturas.push_back(temp);
+    }
+    archivo.close();
+    /*
+    for (int i = 0; i < facturas.size(); i++)
+    {
+        cout << "\nFactura " << i + 1 << endl;
+        cout << "ID: " << facturas.at(i).getId_Factura()<< endl;
+        cout << "Cliente: " << facturas.at(i).getId_Cliente()<< endl;
+        facturas.at(i).getFecha_Compra().mostrarFecha();
+        cout << "Producto: " << facturas.at(i).getId_Producto()<< endl;
+        cout << "Cantidad: " << facturas.at(i).getCantidad()<< endl;
+        cout << "Total: " << facturas.at(i).getTotal_a_pagar()<< endl;
+    }
+    */
+}
+
 bool login(string &user, string &pass, vector<Cuenta> cuentas, int &permiso, int &id_Persona)
 {
     bool cont = true;
@@ -317,11 +361,22 @@ void obtenerFecha(Fecha &fechaActual)
     fechaActual.setAno(aa);
 }
 
-double valDouble(double num){
-    num*=10;
-    ceil(num);
-    num/=10;
-    return num;
+void actualizarProductos(vector<Producto> productos)
+{
+    ofstream csvProd;
+    csvProd.open("productos.csv");
+    for (int i = 0; i < productos.size(); i++)
+    {
+        if (i < productos.size() - 1)
+        {
+            csvProd << productos.at(i).getId_Producto() << "," << productos.at(i).getNombre() << "," << productos.at(i).getDescripcion() << "," << productos.at(i).getStock() << "," << productos.at(i).getPrecio() << "," << productos.at(i).getId_Cate() << endl;
+        }
+        else
+        {
+            csvProd << productos.at(i).getId_Producto() << "," << productos.at(i).getNombre() << "," << productos.at(i).getDescripcion() << "," << productos.at(i).getStock() << "," << productos.at(i).getPrecio() << "," << productos.at(i).getId_Cate();
+        }
+    }
+    csvProd.close();
 }
 
 int main()
@@ -378,13 +433,17 @@ int main()
     cargarProductos(productos);
     sleepcp(500);
     cout << "OK..." << endl;
+    cout << "Cargando facturas..." << endl;
+    cargarFacturas(facturas);
+    sleepcp(500);
+    cout << "OK..." << endl;
     sleepcp(500);
     clear(SO);
     printTitulo();
 
     string usuario, pass, nombre;
     int permiso, id_Persona;
-
+    int id_Fact = facturas.at(facturas.size() - 1).getId_Factura() + 1;
     if (login(usuario, pass, cuentas, permiso, id_Persona))
     {
 
@@ -774,28 +833,20 @@ int main()
                                 d2 += " ";
                             }
                         }
-                        //6 decimales
-                        /*
-                        Internert
-                        n*=10;
-                        ceil(n);
-                        n/=10;
-                        */
-                        len = to_string(productos.at(i).getStock()).length();
-                        d3 = to_string(productos.at(i).getStock());
-                        if (len < 5)
+                        len = aStrPrecision(productos.at(i).getStock(), 2).length();
+                        d3 = aStrPrecision(valDouble(productos.at(i).getStock()), 2);
+                        if (len < 10)
                         {
-                            for (int i = 0; i < 5 - len; i++)
+                            for (int i = 0; i < 10 - len; i++)
                             {
                                 d3 += " ";
                             }
                         }
-                        //6 decimales
-                        len = to_string(productos.at(i).getPrecio()).length();
-                        d4 = to_string(productos.at(i).getPrecio());
-                        if (len < 5)
+                        len = aStrPrecision(valDouble(productos.at(i).getPrecio()), 2).length();
+                        d4 = aStrPrecision(valDouble(productos.at(i).getPrecio()), 2);
+                        if (len < 10)
                         {
-                            for (int i = 0; i < 5 - len; i++)
+                            for (int i = 0; i < 10 - len; i++)
                             {
                                 d4 += " ";
                             }
@@ -821,7 +872,40 @@ int main()
                          << endl;
                     cout << "Cantidad: ";
                     cin >> cant;
-                    //cantidad*precio
+                    double prec = productos.at(codi).getPrecio() * cant;
+                    cout << endl
+                         << endl
+                         << "TOTAL: " << prec << endl
+                         << endl;
+                    pause(SO);
+
+                    productos.at(codi).setStock(productos.at(codi).getStock() - cant);
+                    //*********************************************************
+                    //         MODIFICACION DEL ARCHIVO DE PRODUCTOS
+                    //*********************************************************
+                    actualizarProductos(productos);
+                    //*********************************************************
+
+                    Factura temp(id_Fact, id_Persona, fechaActual, codi, cant, prec);
+                    facturas.push_back(temp);
+                    //*********************************************************
+                    //        ESCRITURA EN EL ARCHIVO DE LA FALTURA
+                    //*********************************************************
+                    ofstream archivo;
+                    archivo.open("facturas.csv");
+                    for (int i = 0; i < facturas.size(); i++)
+                    {
+                        if (i < facturas.size() - 1)
+                        {
+                            archivo << facturas.at(i).getId_Factura() << "," << facturas.at(i).getId_Cliente() << "," << facturas.at(i).getFecha_Compra().getDia() << "," << facturas.at(i).getFecha_Compra().getMes() << "," << facturas.at(i).getFecha_Compra().getAno() << "," << facturas.at(i).getId_Producto() << "," << facturas.at(i).getCantidad() << "," << facturas.at(i).getTotal_a_pagar() << endl;
+                        }
+                        else
+                        {
+                            archivo << facturas.at(i).getId_Factura() << "," << facturas.at(i).getId_Cliente() << "," << facturas.at(i).getFecha_Compra().getDia() << "," << facturas.at(i).getFecha_Compra().getMes() << "," << facturas.at(i).getFecha_Compra().getAno() << "," << facturas.at(i).getId_Producto() << "," << facturas.at(i).getCantidad() << "," << facturas.at(i).getTotal_a_pagar();
+                        }
+                    }
+                    archivo.close();
+                    //*********************************************************
                 }
                 else
                 {
@@ -1077,8 +1161,8 @@ int main()
                                 string dat1 = to_string(productos.at(i).getId_Producto());
                                 string dat2 = productos.at(i).getNombre();
                                 string dat3 = productos.at(i).getDescripcion();
-                                string dat4 = to_string(productos.at(i).getStock());
-                                string dat5 = to_string(productos.at(i).getPrecio());
+                                string dat4 = aStrPrecision(productos.at(i).getStock(), 2);
+                                string dat5 = aStrPrecision(productos.at(i).getPrecio(), 2);
                                 string dat6 = to_string(productos.at(i).getId_Cate());
                                 cout << formatStr(dat1, 4) << "  " << formatStr(dat2, 35) << "  " << formatStr(dat3, 35) << "  " << formatStr(dat4, 12) << "  " << formatStr(dat5, 12) << "  " << formatStr(dat6, 12) << endl;
                             }
@@ -1101,8 +1185,8 @@ int main()
                                 string dat1 = to_string(productos.at(i).getId_Producto());
                                 string dat2 = productos.at(i).getNombre();
                                 string dat3 = productos.at(i).getDescripcion();
-                                string dat4 = to_string(productos.at(i).getStock());
-                                string dat5 = to_string(productos.at(i).getPrecio());
+                                string dat4 = aStrPrecision(productos.at(i).getStock(), 2);
+                                string dat5 = aStrPrecision(productos.at(i).getPrecio(), 2);
                                 string dat6 = to_string(productos.at(i).getId_Cate());
                                 cout << formatStr(dat1, 4) << "  " << formatStr(dat2, 35) << "  " << formatStr(dat3, 35) << "  " << formatStr(dat4, 12) << "  " << formatStr(dat5, 12) << "  " << formatStr(dat6, 12) << endl;
                             }

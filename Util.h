@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -37,6 +38,13 @@ void color(int num)
     system(cmd2);
 }
 
+double valDouble(double num){
+    num*=10;
+    ceil(num);
+    num/=10;
+    return num;
+}
+
 string formatStr(string palabra, int maxSize)
 {
     int len = palabra.length();
@@ -49,4 +57,13 @@ string formatStr(string palabra, int maxSize)
         }
     }
     return salida;
+}
+
+template <typename T>
+string aStrPrecision(const T a_value, const int n = 6)
+{
+    ostringstream out;
+    out.precision(n);
+    out << fixed << a_value;
+    return out.str();
 }
