@@ -3,6 +3,8 @@
 #include <Windows.h>
 #include <vector>
 #include <fstream>
+#include <ctime>
+#include <math.h> 
 
 #ifdef _WIN64
 #include <windows.h>
@@ -303,6 +305,25 @@ string charToString(char c[])
     return j;
 }
 
+void obtenerFecha(Fecha &fechaActual)
+{
+    time_t t = time(0);
+    struct tm *now = localtime(&t);
+    int dd = now->tm_mday;
+    int mm = now->tm_mon + 1;
+    int aa = now->tm_year + 1900;
+    fechaActual.setDia(dd);
+    fechaActual.setMes(mm);
+    fechaActual.setAno(aa);
+}
+
+double valDouble(double num){
+    num*=10;
+    ceil(num);
+    num/=10;
+    return num;
+}
+
 int main()
 {
     color(2);
@@ -328,6 +349,11 @@ int main()
     vector<Cliente> clientes;
     vector<Departamento> departamentos;
     vector<Producto> productos;
+    vector<Factura> facturas;
+    Fecha fechaActual;
+    obtenerFecha(fechaActual);
+    cout << fechaActual.getDia() << "/" << fechaActual.getMes() << "/" << fechaActual.getAno() << endl
+         << endl;
     cout << "Cargando cuentas..." << endl;
     cargarCuentas(cuentas);
     sleepcp(500);
@@ -382,7 +408,7 @@ int main()
             cin >> opcion;
             switch (opcion)
             {
-            case 1:
+            case 1: // CLIENTE - VENDEDOR - ADMINISTRADOR & MIS DATOS
             {
                 bool c = true;
                 while (c)
@@ -705,7 +731,7 @@ int main()
             case 2:
             {
                 clear(SO);
-                if (permiso == 1)
+                if (permiso == 1) // CLIENTE & AGREGAR PRODUCTOS
                 {
                     cout << "=============================================" << endl;
                     cout << "===============MENU DE COMPRAS===============" << endl;
@@ -1014,7 +1040,7 @@ int main()
             {
                 clear(SO);
                 //
-                
+
                 pause(SO);
                 break;
             case 4:
