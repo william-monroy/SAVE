@@ -379,7 +379,8 @@ void actualizarProductos(vector<Producto> productos)
     csvProd.close();
 }
 
-void actualizarClientes(vector<Cliente> clientes){
+void actualizarClientes(vector<Cliente> clientes)
+{
     ofstream csvClientes;
     csvClientes.open("clientes.csv");
     for (int i = 0; i < clientes.size(); i++)
@@ -394,6 +395,24 @@ void actualizarClientes(vector<Cliente> clientes){
         }
     }
     csvClientes.close();
+}
+
+void actualizarEmpleados(vector<Empleado> empleados)
+{
+    ofstream csvEmpleados;
+    csvEmpleados.open("empleados.csv");
+    for (int i = 0; i < empleados.size(); i++)
+    {
+        if (i < empleados.size() - 1)
+        {
+            csvEmpleados << empleados.at(i).getNombre() << "," << empleados.at(i).getApellido() << "," << empleados.at(i).getEdad() << "," << empleados.at(i).getIne() << "," << empleados.at(i).getId_Empleado() << "," << empleados.at(i).getId_Dpto() << "," << empleados.at(i).getCargo() << "," << empleados.at(i).getCuenta().getUsuario() << "," << empleados.at(i).getCuenta().getPass() << "," << empleados.at(i).getCuenta().getPermiso() << "," << empleados.at(i).getCuenta().getId_Persona() << endl;
+        }
+        else
+        {
+            csvEmpleados << empleados.at(i).getNombre() << "," << empleados.at(i).getApellido() << "," << empleados.at(i).getEdad() << "," << empleados.at(i).getIne() << "," << empleados.at(i).getId_Empleado() << "," << empleados.at(i).getId_Dpto() << "," << empleados.at(i).getCargo() << "," << empleados.at(i).getCuenta().getUsuario() << "," << empleados.at(i).getCuenta().getPass() << "," << empleados.at(i).getCuenta().getPermiso() << "," << empleados.at(i).getCuenta().getId_Persona();
+        }
+    }
+    csvEmpleados.close();
 }
 
 int main()
@@ -518,7 +537,7 @@ int main()
                             int op;
                             cout << "\t\t\t\t\tOPCION: ";
                             cin >> op;
-                            if (permiso == 1)
+                            if (permiso == 1) // CAMBIAR MIS DATOS PARA CLIENTES
                             {
                                 string nnom, nape, nusr, npss;
                                 switch (op)
@@ -539,7 +558,7 @@ int main()
                                     break;
                                 }
                                 case 2:
-                                {                                    
+                                {
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << clientes.at(id_Persona).getId_Cliente() << endl;
@@ -564,7 +583,7 @@ int main()
                                     clientes.at(id_Persona).setIne(nine);
 
                                     actualizarClientes(clientes);
-                                    
+
                                     pause(SO);
                                     break;
                                 }
@@ -579,7 +598,7 @@ int main()
                                     clientes.at(id_Persona).setEdad(neda);
 
                                     actualizarClientes(clientes);
-                                    
+
                                     pause(SO);
                                     break;
                                 }
@@ -591,7 +610,7 @@ int main()
                                     cout << "Usuario Actual: " << clientes.at(id_Persona).getCuenta().getUsuario() << endl;
                                     nusr = leerStr("Nuevo Usuario: ");
 
-                                    Cuenta tempusr(nusr,clientes.at(id_Persona).getCuenta().getPass(),clientes.at(id_Persona).getCuenta().getPermiso(),clientes.at(id_Persona).getCuenta().getId_Persona());
+                                    Cuenta tempusr(nusr, clientes.at(id_Persona).getCuenta().getPass(), clientes.at(id_Persona).getCuenta().getPermiso(), clientes.at(id_Persona).getCuenta().getId_Persona());
 
                                     clientes.at(id_Persona).setCuenta(tempusr);
 
@@ -606,7 +625,7 @@ int main()
                                     cout << "Password Actual: " << clientes.at(id_Persona).getCuenta().getPass() << endl;
                                     npss = leerStr("Nuevo Password: ");
 
-                                    Cuenta tempps(clientes.at(id_Persona).getCuenta().getUsuario(),npss,clientes.at(id_Persona).getCuenta().getPermiso(),clientes.at(id_Persona).getCuenta().getId_Persona());
+                                    Cuenta tempps(clientes.at(id_Persona).getCuenta().getUsuario(), npss, clientes.at(id_Persona).getCuenta().getPermiso(), clientes.at(id_Persona).getCuenta().getId_Persona());
 
                                     clientes.at(id_Persona).setCuenta(tempps);
 
@@ -627,22 +646,21 @@ int main()
                                 }
                                 }
                             }
-                            else
+                            else // CAMBIAR MIS DATOS PARA VENDEDOR O ADMINISTRADOR
                             {
                                 string nnom, nape, nine, neda, ndpt, ncrg, nusr, npss;
                                 switch (op)
                                 {
                                 case 1:
-                                    char nom[40];
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << empleados.at(id_Persona).getId_Empleado() << endl;
                                     cout << "Nombre Actual: " << empleados.at(id_Persona).getNombre() << endl;
-                                    cout << "Nuevo Nombre: ";
-                                    cin.getline(nom, 40);
-                                    nnom = charToString(nom);
+                                    nnom = leerStr("Nuevo Nombre: ");
 
-                                    //Escribir cambios en csv
+                                    empleados.at(id_Persona).setNombre(nnom);
+                                    
+                                    actualizarEmpleados(empleados);
 
                                     cout << nnom;
                                     pause(SO);
