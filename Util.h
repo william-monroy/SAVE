@@ -86,3 +86,11 @@ int leerInt(string txt)
     cin>>n;
     return n;
 }
+
+int leerDouble(string txt)
+{
+    double n;
+    cout << txt;
+    cin>>n;
+    return n;
+}
