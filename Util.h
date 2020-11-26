@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string>
 #include <sstream>
+#include <stdio.h>
 
 using namespace std;
 
@@ -38,10 +39,11 @@ void color(int num)
     system(cmd2);
 }
 
-double valDouble(double num){
-    num*=10;
+double valDouble(double num)
+{
+    num *= 10;
     ceil(num);
-    num/=10;
+    num /= 10;
     return num;
 }
 
@@ -66,4 +68,21 @@ string aStrPrecision(const T a_value, const int n = 6)
     out.precision(n);
     out << fixed << a_value;
     return out.str();
+}
+
+string leerStr(string txt)
+{
+    string n;
+    cout << txt;
+    cin.ignore();
+    getline(cin, n, '\n');
+    return n;
+}
+
+int leerInt(string txt)
+{
+    int n;
+    cout << txt;
+    cin>>n;
+    return n;
 }

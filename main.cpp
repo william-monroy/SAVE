@@ -379,6 +379,23 @@ void actualizarProductos(vector<Producto> productos)
     csvProd.close();
 }
 
+void actualizarClientes(vector<Cliente> clientes){
+    ofstream csvClientes;
+    csvClientes.open("clientes.csv");
+    for (int i = 0; i < clientes.size(); i++)
+    {
+        if (i < clientes.size() - 1)
+        {
+            csvClientes << clientes.at(i).getNombre() << "," << clientes.at(i).getApellido() << "," << clientes.at(i).getEdad() << "," << clientes.at(i).getIne() << "," << clientes.at(i).getId_Cliente() << "," << clientes.at(i).getCuenta().getUsuario() << "," << clientes.at(i).getCuenta().getPass() << "," << clientes.at(i).getCuenta().getPermiso() << "," << clientes.at(i).getCuenta().getId_Persona() << endl;
+        }
+        else
+        {
+            csvClientes << clientes.at(i).getNombre() << "," << clientes.at(i).getApellido() << "," << clientes.at(i).getEdad() << "," << clientes.at(i).getIne() << "," << clientes.at(i).getId_Cliente() << "," << clientes.at(i).getCuenta().getUsuario() << "," << clientes.at(i).getCuenta().getPass() << "," << clientes.at(i).getCuenta().getPermiso() << "," << clientes.at(i).getCuenta().getId_Persona();
+        }
+    }
+    csvClientes.close();
+}
+
 int main()
 {
     color(2);
@@ -503,107 +520,111 @@ int main()
                             cin >> op;
                             if (permiso == 1)
                             {
-                                string nnom, nape, nine, neda, nusr, npss;
+                                string nnom, nape, nusr, npss;
                                 switch (op)
                                 {
                                 case 1:
-                                    char nom[40];
+                                {
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << clientes.at(id_Persona).getId_Cliente() << endl;
                                     cout << "Nombre Actual: " << clientes.at(id_Persona).getNombre() << endl;
-                                    cout << "Nuevo Nombre: ";
-                                    cin.getline(nom, 40);
-                                    nnom = charToString(nom);
+                                    nnom = leerStr("Nuevo Nombre: ");
 
-                                    //Escribir cambios en csv
+                                    clientes.at(id_Persona).setNombre(nnom);
 
-                                    cout << nnom;
+                                    actualizarClientes(clientes);
+
                                     pause(SO);
                                     break;
+                                }
                                 case 2:
-                                    char ape[50];
+                                {                                    
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << clientes.at(id_Persona).getId_Cliente() << endl;
                                     cout << "Apellido Actual: " << clientes.at(id_Persona).getApellido() << endl;
-                                    cout << "Nuevo Apellido: ";
-                                    cin.getline(ape, 50);
-                                    nape = charToString(ape);
+                                    nape = leerStr("Nuevo Apellido: ");
 
-                                    //Escribir cambios en csv
+                                    clientes.at(id_Persona).setApellido(nape);
 
-                                    cout << ape;
+                                    actualizarClientes(clientes);
+
                                     pause(SO);
                                     break;
+                                }
                                 case 3:
-                                    char ine[15];
+                                {
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << clientes.at(id_Persona).getId_Cliente() << endl;
                                     cout << "INE Actual: " << clientes.at(id_Persona).getIne() << endl;
-                                    cout << "Nuevo INE: ";
-                                    cin.getline(ine, 15);
-                                    nine = charToString(ine);
+                                    int nine = leerInt("Nuevo INE: ");
 
-                                    //Escribir cambios en csv
+                                    clientes.at(id_Persona).setIne(nine);
 
-                                    cout << nine;
+                                    actualizarClientes(clientes);
+                                    
                                     pause(SO);
                                     break;
+                                }
                                 case 4:
-                                    char eda[3];
+                                {
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << clientes.at(id_Persona).getId_Cliente() << endl;
                                     cout << "Edad Actual: " << clientes.at(id_Persona).getEdad() << endl;
-                                    cout << "Nuevo Edad: ";
-                                    cin.getline(eda, 3);
-                                    neda = charToString(eda);
+                                    int neda = leerInt("Nueva Edad: ");
 
-                                    //Escribir cambios en csv
+                                    clientes.at(id_Persona).setEdad(neda);
 
-                                    cout << neda;
+                                    actualizarClientes(clientes);
+                                    
                                     pause(SO);
                                     break;
+                                }
                                 case 5:
-                                    char usr[15];
+                                {
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << clientes.at(id_Persona).getId_Cliente() << endl;
                                     cout << "Usuario Actual: " << clientes.at(id_Persona).getCuenta().getUsuario() << endl;
-                                    cout << "Nuevo Usuario: ";
-                                    cin.getline(usr, 10);
-                                    nusr = charToString(usr);
+                                    nusr = leerStr("Nuevo Usuario: ");
 
-                                    //Escribir cambios en csv
+                                    Cuenta tempusr(nusr,clientes.at(id_Persona).getCuenta().getPass(),clientes.at(id_Persona).getCuenta().getPermiso(),clientes.at(id_Persona).getCuenta().getId_Persona());
 
-                                    cout << nusr;
+                                    clientes.at(id_Persona).setCuenta(tempusr);
+
                                     pause(SO);
                                     break;
+                                }
                                 case 6:
-                                    char pss[15];
+                                {
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << clientes.at(id_Persona).getId_Cliente() << endl;
                                     cout << "Password Actual: " << clientes.at(id_Persona).getCuenta().getPass() << endl;
-                                    cout << "Nuevo Password: ";
-                                    cin.getline(pss, 15);
-                                    npss = charToString(pss);
+                                    npss = leerStr("Nuevo Password: ");
 
-                                    //Escribir cambios en csv
+                                    Cuenta tempps(clientes.at(id_Persona).getCuenta().getUsuario(),npss,clientes.at(id_Persona).getCuenta().getPermiso(),clientes.at(id_Persona).getCuenta().getId_Persona());
 
-                                    cout << npss;
+                                    clientes.at(id_Persona).setCuenta(tempps);
+
                                     pause(SO);
                                     break;
+                                }
                                 case 7:
+                                {
                                     co = false;
                                     break;
+                                }
                                 default:
+                                {
                                     cout << "ERROR: Opcion Incorrecta\n"
                                          << endl;
                                     pause(SO);
                                     break;
+                                }
                                 }
                             }
                             else
@@ -1199,8 +1220,10 @@ int main()
                                 totFinal += facturas.at(i).getTotal_a_pagar();
                             }
                         }
-                        cout << "TOTAL A PAGAR: " << totFinal << endl<<endl;
-                        cout << "¡Gracias por su preferencia!"<<endl<<endl;
+                        cout << "TOTAL A PAGAR: " << totFinal << endl
+                             << endl;
+                        cout << "¡Gracias por su preferencia!" << endl
+                             << endl;
                         pause(SO);
                         id_Fact++;
                         facturas.clear();
