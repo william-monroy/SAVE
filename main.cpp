@@ -1242,14 +1242,14 @@ int main()
                     {
                         clear(SO);
                         printTitulo();
-                        printCRUDp("Productos");
+                        printCRUDcompleto("Productos");
                         int opprod;
                         cout << "\t\t\t\t\tOPCION: ";
                         cin >> opprod;
                         switch (opprod)
                         {
                         //****************************************************************
-                        case 1:
+                        case 1: // CONSULTAR PRODUCTOS
                         {
                             //Consultar
                             clear(SO);
@@ -1272,161 +1272,182 @@ int main()
                             pause(SO);
                             break;
                         }
-                        case 2:
+                        case 2: // AGREGAR PRODUCTOS
+                        {
+                            if (permiso == 2)
+                            {
+                                cout << "No tiene permisos para esta accion." << endl
+                                     << endl;
+                            }
+                            else
+                            {
+                                //***************************************************************************************
+                            }
+                        }
+                        case 3: //MODIFICAR PRODUCTOS
                         {
                             //Modificar
                             clear(SO);
-                            int id_producto;
-                            cout << "===============================================================================================" << endl;
-                            cout << "==================================== CONSULTA DE PRODUCTOS ====================================" << endl;
-                            cout << "===============================================================================================\n"
-                                 << endl;
-                            cout << "ID    NOMBRE                               DESCRIPCION                          STOCK         PRECIO        ID_CATEGORIA" << endl;
-                            for (int i = 0; i < productos.size(); i++)
+                            if (permiso == 2)
                             {
-                                string dat1 = to_string(productos.at(i).getId_Producto());
-                                string dat2 = productos.at(i).getNombre();
-                                string dat3 = productos.at(i).getDescripcion();
-                                string dat4 = aStrPrecision(productos.at(i).getStock(), 2);
-                                string dat5 = aStrPrecision(productos.at(i).getPrecio(), 2);
-                                string dat6 = to_string(productos.at(i).getId_Cate());
-                                cout << formatStr(dat1, 4) << "  " << formatStr(dat2, 35) << "  " << formatStr(dat3, 35) << "  " << formatStr(dat4, 12) << "  " << formatStr(dat5, 12) << "  " << formatStr(dat6, 12) << endl;
+                                cout << "No tiene permisos para esta accion." << endl
+                                     << endl;
                             }
-                            cout << endl;
-                            cout << "ID Producto: ";
-                            cin >> id_producto;
-                            bool modProdcont = true;
-                            while (modProdcont)
+                            else
                             {
-                                clear(SO);
-                                modfProd(productos, id_producto);
-                                int opcModprod;
-                                cout << "\t\t\t\t\tOPCION: ";
-                                cin >> opcModprod;
-                                string nnom, nape, nine, neda, nusr, npss;
-                                switch (opcModprod)
+                                int id_producto;
+                                cout << "===============================================================================================" << endl;
+                                cout << "==================================== CONSULTA DE PRODUCTOS ====================================" << endl;
+                                cout << "===============================================================================================\n"
+                                     << endl;
+                                cout << "ID    NOMBRE                               DESCRIPCION                          STOCK         PRECIO        ID_CATEGORIA" << endl;
+                                for (int i = 0; i < productos.size(); i++)
                                 {
-                                case 1:
-                                {
-                                    char nom[40];
-                                    clear(SO);
-                                    printTitulo();
-                                    cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
-                                    cout << "Nombre Actual: " << productos.at(id_producto).getNombre() << endl;
-                                    cout << "Nuevo Nombre: ";
-                                    cin.getline(nom, 40);
-                                    nnom = charToString(nom);
-
-                                    //Escribir cambios en csv
-
-                                    cout << nnom << endl;
-                                    pause(SO);
-                                    break;
+                                    string dat1 = to_string(productos.at(i).getId_Producto());
+                                    string dat2 = productos.at(i).getNombre();
+                                    string dat3 = productos.at(i).getDescripcion();
+                                    string dat4 = aStrPrecision(productos.at(i).getStock(), 2);
+                                    string dat5 = aStrPrecision(productos.at(i).getPrecio(), 2);
+                                    string dat6 = to_string(productos.at(i).getId_Cate());
+                                    cout << formatStr(dat1, 4) << "  " << formatStr(dat2, 35) << "  " << formatStr(dat3, 35) << "  " << formatStr(dat4, 12) << "  " << formatStr(dat5, 12) << "  " << formatStr(dat6, 12) << endl;
                                 }
-                                case 2:
-                                {
-                                    char desc[50];
-                                    clear(SO);
-                                    printTitulo();
-                                    cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
-                                    cout << "Descripcion Actual: " << productos.at(id_producto).getDescripcion() << endl;
-                                    cout << "Nueva Descripcion: ";
-                                    cin.getline(desc, 50);
-                                    string ndesc = charToString(desc);
-
-                                    //Escribir cambios en csv
-
-                                    cout << ndesc << endl;
-                                    pause(SO);
-                                    break;
-                                }
-                                case 3:
-                                {
-                                    char stock[15];
-                                    clear(SO);
-                                    printTitulo();
-                                    cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
-                                    cout << "Stock Actual: " << productos.at(id_producto).getStock() << endl;
-                                    cout << "Nuevo Stock: ";
-                                    cin.getline(stock, 15);
-                                    string nstock = charToString(stock);
-
-                                    //Escribir cambios en csv
-
-                                    cout << nstock << endl;
-                                    pause(SO);
-                                    break;
-                                }
-                                case 4:
-                                {
-                                    char prc[10];
-                                    clear(SO);
-                                    printTitulo();
-                                    cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
-                                    cout << "Precio Actual: " << productos.at(id_producto).getPrecio() << endl;
-                                    cout << "Nuevo Precio: ";
-                                    cin.getline(prc, 10);
-                                    string nprc = charToString(prc);
-
-                                    //Escribir cambios en csv
-
-                                    cout << nprc << endl;
-                                    pause(SO);
-                                    break;
-                                }
-                                case 5:
+                                cout << endl;
+                                cout << "ID Producto: ";
+                                cin >> id_producto;
+                                bool modProdcont = true;
+                                while (modProdcont)
                                 {
                                     clear(SO);
-                                    int id_cat;
-                                    cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
-                                    cout << "Categoria Actual: " << categorias.at(productos.at(id_producto).getId_Cate()).getNombre() << endl;
-                                    cout << "Nuevo Categoria: " << endl
-                                         << endl;
-                                    cout << "==========================================" << endl;
-                                    cout << "================CATEGORIAS================" << endl;
-                                    cout << "==========================================\n"
-                                         << endl;
-                                    cout << "ID    NOMBRE" << endl;
-                                    for (int i = 0; i < categorias.size(); i++)
+                                    modfProd(productos, id_producto);
+                                    int opcModprod;
+                                    cout << "\t\t\t\t\tOPCION: ";
+                                    cin >> opcModprod;
+                                    string nnom, nape, nine, neda, nusr, npss;
+                                    switch (opcModprod)
                                     {
-                                        string id_c = to_string(categorias.at(i).getId_Categoria());
-                                        string nom_c = categorias.at(i).getNombre();
-                                        cout << formatStr(id_c, 4) << "  " << formatStr(nom_c, 20) << endl;
+                                    case 1:
+                                    {
+                                        char nom[40];
+                                        clear(SO);
+                                        printTitulo();
+                                        cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
+                                        cout << "Nombre Actual: " << productos.at(id_producto).getNombre() << endl;
+                                        cout << "Nuevo Nombre: ";
+                                        cin.getline(nom, 40);
+                                        nnom = charToString(nom);
+
+                                        //Escribir cambios en csv
+
+                                        cout << nnom << endl;
+                                        pause(SO);
+                                        break;
                                     }
-                                    cout << endl;
-                                    cout << "ID Categoria: ";
-                                    cin >> id_cat;
+                                    case 2:
+                                    {
+                                        char desc[50];
+                                        clear(SO);
+                                        printTitulo();
+                                        cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
+                                        cout << "Descripcion Actual: " << productos.at(id_producto).getDescripcion() << endl;
+                                        cout << "Nueva Descripcion: ";
+                                        cin.getline(desc, 50);
+                                        string ndesc = charToString(desc);
 
-                                    //Escribir cambios en csv
+                                        //Escribir cambios en csv
 
-                                    cout << id_cat << endl;
-                                    pause(SO);
-                                    break;
-                                }
-                                case 6:
-                                {
-                                    modProdcont = false;
-                                    break;
-                                }
-                                default:
-                                {
-                                    cout << "ERROR: Opcion Incorrecta\n"
-                                         << endl;
-                                    pause(SO);
-                                    break;
-                                }
+                                        cout << ndesc << endl;
+                                        pause(SO);
+                                        break;
+                                    }
+                                    case 3:
+                                    {
+                                        char stock[15];
+                                        clear(SO);
+                                        printTitulo();
+                                        cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
+                                        cout << "Stock Actual: " << productos.at(id_producto).getStock() << endl;
+                                        cout << "Nuevo Stock: ";
+                                        cin.getline(stock, 15);
+                                        string nstock = charToString(stock);
+
+                                        //Escribir cambios en csv
+
+                                        cout << nstock << endl;
+                                        pause(SO);
+                                        break;
+                                    }
+                                    case 4:
+                                    {
+                                        char prc[10];
+                                        clear(SO);
+                                        printTitulo();
+                                        cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
+                                        cout << "Precio Actual: " << productos.at(id_producto).getPrecio() << endl;
+                                        cout << "Nuevo Precio: ";
+                                        cin.getline(prc, 10);
+                                        string nprc = charToString(prc);
+
+                                        //Escribir cambios en csv
+
+                                        cout << nprc << endl;
+                                        pause(SO);
+                                        break;
+                                    }
+                                    case 5:
+                                    {
+                                        clear(SO);
+                                        int id_cat;
+                                        cout << "ID: " << productos.at(id_producto).getId_Producto() << endl;
+                                        cout << "Categoria Actual: " << categorias.at(productos.at(id_producto).getId_Cate()).getNombre() << endl;
+                                        cout << "Nuevo Categoria: " << endl
+                                             << endl;
+                                        cout << "==========================================" << endl;
+                                        cout << "================CATEGORIAS================" << endl;
+                                        cout << "==========================================\n"
+                                             << endl;
+                                        cout << "ID    NOMBRE" << endl;
+                                        for (int i = 0; i < categorias.size(); i++)
+                                        {
+                                            string id_c = to_string(categorias.at(i).getId_Categoria());
+                                            string nom_c = categorias.at(i).getNombre();
+                                            cout << formatStr(id_c, 4) << "  " << formatStr(nom_c, 20) << endl;
+                                        }
+                                        cout << endl;
+                                        cout << "ID Categoria: ";
+                                        cin >> id_cat;
+
+                                        //Escribir cambios en csv
+
+                                        cout << id_cat << endl;
+                                        pause(SO);
+                                        break;
+                                    }
+                                    case 6:
+                                    {
+                                        modProdcont = false;
+                                        break;
+                                    }
+                                    default:
+                                    {
+                                        cout << "ERROR: Opcion Incorrecta\n"
+                                             << endl;
+                                        pause(SO);
+                                        break;
+                                    }
+                                    }
                                 }
                             }
                             pause(SO);
                             break;
                         }
-                        case 3:
-                        {
-                            //regresar
+                        case 4: // ELIMINAR PRODUCTOS
+
+                        case 5: //regresar
+
                             contiprod = false;
 
                             break;
-                        }
+
                         default:
                         {
                             cout << endl
