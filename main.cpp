@@ -1160,6 +1160,7 @@ int main()
                                 cout << formatStr(detId, 4) << "  " << formatStr(detNom, 35) << "  " << formatStr(detPrec, 10) << "  " << formatStr(detCant, 10) << "  " << formatStr(detSubTot, 14) << endl;
                             }
                         }
+                        cout << endl;
                     }
                     else
                     {
@@ -1178,6 +1179,33 @@ int main()
                 clear(SO);
                 if (permiso == 1)
                 {
+                    if (carrito)
+                    {
+                        cout << "========================================================================" << endl;
+                        cout << "==============================MENU DE PAGO==============================" << endl;
+                        cout << "========================================================================" << endl
+                             << endl;
+                        cout << "Id Factura: " << facturas.at(id_Fact).getId_Factura() << endl;
+                        cout << "     Fecha: ";
+                        fechaActual.mostrarFecha();
+                        cout << "   Cliente: " << clientes.at(id_Persona).getNombre() << " " << clientes.at(id_Persona).getApellido() << endl;
+                        cout << "       INE: " << clientes.at(id_Persona).getIne() << endl;
+                        cout << "--------------------------------------------------------------------------" << endl;
+                        double totFinal = 0;
+                        for (int i = 0; i < facturas.size(); i++)
+                        {
+                            if (facturas.at(id_Fact).getId_Factura() == facturas.at(i).getId_Factura())
+                            {
+                                totFinal += facturas.at(i).getTotal_a_pagar();
+                            }
+                        }
+                        cout << "TOTAL A PAGAR: " << totFinal << endl<<endl;
+                        cout << "¡Gracias por su preferencia!"<<endl<<endl;
+                        pause(SO);
+                        id_Fact++;
+                        facturas.clear();
+                        cargarFacturas(facturas);
+                    }
                 }
                 else
                 {
