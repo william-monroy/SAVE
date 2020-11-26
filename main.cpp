@@ -444,6 +444,8 @@ int main()
     string usuario, pass, nombre;
     int permiso, id_Persona;
     int id_Fact = facturas.at(facturas.size() - 1).getId_Factura() + 1;
+    bool carrito = false;
+    bool pagado = false;
     if (login(usuario, pass, cuentas, permiso, id_Persona))
     {
 
@@ -872,40 +874,54 @@ int main()
                          << endl;
                     cout << "Cantidad: ";
                     cin >> cant;
-                    double prec = productos.at(codi).getPrecio() * cant;
-                    cout << endl
-                         << endl
-                         << "TOTAL: " << prec << endl
-                         << endl;
-                    pause(SO);
-
-                    productos.at(codi).setStock(productos.at(codi).getStock() - cant);
-                    //*********************************************************
-                    //         MODIFICACION DEL ARCHIVO DE PRODUCTOS
-                    //*********************************************************
-                    actualizarProductos(productos);
-                    //*********************************************************
-
-                    Factura temp(id_Fact, id_Persona, fechaActual, codi, cant, prec);
-                    facturas.push_back(temp);
-                    //*********************************************************
-                    //        ESCRITURA EN EL ARCHIVO DE LA FALTURA
-                    //*********************************************************
-                    ofstream archivo;
-                    archivo.open("facturas.csv");
-                    for (int i = 0; i < facturas.size(); i++)
+                    //Validacion stock
+                    if (productos.at(codi).getStock() >= cant && productos.at(codi).getStock() != 0)
                     {
-                        if (i < facturas.size() - 1)
+                        carrito = true;
+                        double prec = productos.at(codi).getPrecio() * cant;
+                        cout << endl
+                             << endl
+                             << "TOTAL: " << prec << endl
+                             << endl;
+
+                        productos.at(codi).setStock(productos.at(codi).getStock() - cant);
+                        //*********************************************************
+                        //         MODIFICACION DEL ARCHIVO DE PRODUCTOS
+                        //*********************************************************
+                        actualizarProductos(productos);
+                        //*********************************************************
+
+                        Factura temp(id_Fact, id_Persona, fechaActual, codi, cant, prec);
+                        facturas.push_back(temp);
+                        //*********************************************************
+                        //        ESCRITURA EN EL ARCHIVO DE LA FALTURA
+                        //*********************************************************
+                        ofstream archivo;
+                        archivo.open("facturas.csv");
+                        for (int i = 0; i < facturas.size(); i++)
                         {
-                            archivo << facturas.at(i).getId_Factura() << "," << facturas.at(i).getId_Cliente() << "," << facturas.at(i).getFecha_Compra().getDia() << "," << facturas.at(i).getFecha_Compra().getMes() << "," << facturas.at(i).getFecha_Compra().getAno() << "," << facturas.at(i).getId_Producto() << "," << facturas.at(i).getCantidad() << "," << facturas.at(i).getTotal_a_pagar() << endl;
+                            if (i < facturas.size() - 1)
+                            {
+                                archivo << facturas.at(i).getId_Factura() << "," << facturas.at(i).getId_Cliente() << "," << facturas.at(i).getFecha_Compra().getDia() << "," << facturas.at(i).getFecha_Compra().getMes() << "," << facturas.at(i).getFecha_Compra().getAno() << "," << facturas.at(i).getId_Producto() << "," << facturas.at(i).getCantidad() << "," << facturas.at(i).getTotal_a_pagar() << endl;
+                            }
+                            else
+                            {
+                                archivo << facturas.at(i).getId_Factura() << "," << facturas.at(i).getId_Cliente() << "," << facturas.at(i).getFecha_Compra().getDia() << "," << facturas.at(i).getFecha_Compra().getMes() << "," << facturas.at(i).getFecha_Compra().getAno() << "," << facturas.at(i).getId_Producto() << "," << facturas.at(i).getCantidad() << "," << facturas.at(i).getTotal_a_pagar();
+                            }
                         }
-                        else
-                        {
-                            archivo << facturas.at(i).getId_Factura() << "," << facturas.at(i).getId_Cliente() << "," << facturas.at(i).getFecha_Compra().getDia() << "," << facturas.at(i).getFecha_Compra().getMes() << "," << facturas.at(i).getFecha_Compra().getAno() << "," << facturas.at(i).getId_Producto() << "," << facturas.at(i).getCantidad() << "," << facturas.at(i).getTotal_a_pagar();
-                        }
+                        archivo.close();
+                        //*********************************************************
                     }
-                    archivo.close();
-                    //*********************************************************
+                    else if (productos.at(codi).getStock() == 0)
+                    {
+                        cout << "Este producto se ha agotado" << endl
+                             << endl;
+                    }
+                    else
+                    {
+                        cout << "Cantidad no disponible" << endl
+                             << endl;
+                    }
                 }
                 else
                 {
@@ -1123,7 +1139,37 @@ int main()
             case 3:
             {
                 clear(SO);
-                //
+                if (permiso == 1) // CLIENTE & DETALLE COMPRA
+                {
+                    if (carrito)
+                    {
+                        cout << "=================================================================================" << endl;
+                        cout << "================================DETALLE DE COMPRA================================" << endl;
+                        cout << "=================================================================================" << endl
+                             << endl;
+                        cout << "ID    NOMBRE                               PRECIO      CANTIDAD    SUB_TOTAL";
+                        for (int i = 0; i < facturas.size(); i++)
+                        {
+                            if (facturas.at(id_Fact).getId_Factura() == facturas.at(i).getId_Factura())
+                            {
+                                string detId = to_string(facturas.at(i).getId_Factura());
+                                string detNom = productos.at(facturas.at(i).getId_Producto()).getNombre();
+                                string detPrec = aStrPrecision(productos.at(facturas.at(i).getId_Producto()).getPrecio(), 2);
+                                string detCant = aStrPrecision(facturas.at(i).getCantidad(), 2);
+                                string detSubTot = aStrPrecision(facturas.at(i).getTotal_a_pagar(), 2);
+                                cout << formatStr(detId, 4) << "  " << formatStr(detNom, 35) << "  " << formatStr(detPrec, 10) << "  " << formatStr(detCant, 10) << "  " << formatStr(detSubTot, 14) << endl;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        cout << "No ha agregado productos a su orden" << endl
+                             << endl;
+                    }
+                }
+                else
+                {
+                }
 
                 pause(SO);
                 break;
