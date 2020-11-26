@@ -648,7 +648,7 @@ int main()
                             }
                             else // CAMBIAR MIS DATOS PARA VENDEDOR O ADMINISTRADOR
                             {
-                                string nnom, nape, nine, neda, ndpt, ncrg, nusr, npss;
+                                string nnom, nape, ncrg, nusr, npss;
                                 switch (op)
                                 {
                                 case 1:
@@ -666,66 +666,59 @@ int main()
                                     pause(SO);
                                     break;
                                 case 2:
-                                    char ape[50];
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << empleados.at(id_Persona).getId_Empleado();
                                     cout << "Apellido Actual: " << empleados.at(id_Persona).getApellido() << endl;
-                                    cout << "Nuevo Apellido: ";
-                                    cin.getline(ape, 50);
-                                    nape = charToString(ape);
+                                    nape = charToString("Nuevo Apellido: ");
 
-                                    //Escribir cambios en csv
+                                    empleados.at(id_Persona).setApellido(nape);
 
-                                    cout << ape;
+                                    actualizarEmpleados(empleados);
+
                                     pause(SO);
                                     break;
                                 case 3:
-                                    char ine[15];
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << empleados.at(id_Persona).getId_Empleado();
                                     cout << "INE Actual: " << empleados.at(id_Persona).getIne() << endl;
-                                    cout << "Nuevo INE: ";
-                                    cin.getline(ine, 15);
-                                    nine = charToString(ine);
+                                    int nine = leerInt("Nuevo INE: ");
 
-                                    //Escribir cambios en csv
+                                    empleados.at(id_Persona).setIne(nine);
 
-                                    cout << nine;
+                                    actualizarEmpleados(empleados);
+
                                     pause(SO);
                                     break;
                                 case 4:
-                                    char eda[3];
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << empleados.at(id_Persona).getId_Empleado();
                                     cout << "Edad Actual: " << empleados.at(id_Persona).getEdad() << endl;
-                                    cout << "Nuevo Edad: ";
-                                    cin.getline(eda, 3);
-                                    neda = charToString(eda);
+                                    int neda = leerInt("Nuevo Edad: ");
 
-                                    //Escribir cambios en csv
+                                    empleados.at(id_Persona).setEdad(neda);
 
-                                    cout << neda;
+                                    actualizarEmpleados(empleados);
+
                                     pause(SO);
                                     break;
 
                                 case 5:
                                     if (permiso == 3)
                                     {
-                                        char dpt[3];
                                         clear(SO);
                                         printTitulo();
                                         cout << "ID: " << empleados.at(id_Persona).getId_Empleado();
                                         cout << "Departamento Actual: " << empleados.at(id_Persona).getId_Dpto() << endl;
-                                        cout << "Nuevo Departamento: ";
-                                        cin.getline(dpt, 3);
-                                        ndpt = charToString(dpt);
+                                        int ndpt = leerInt("Nuevo Departamento: ");
 
-                                        //Escribir cambios en csv
+                                        empleados.at(id_Persona).setId_Dpto(ndpt);
 
-                                        cout << ndpt;
+                                        actualizarEmpleados(empleados);
+
+                                        pause(SO);
                                     }
                                     else
                                     {
@@ -736,18 +729,17 @@ int main()
                                 case 6:
                                     if (permiso == 3)
                                     {
-                                        char crg[20];
                                         clear(SO);
                                         printTitulo();
                                         cout << "ID: " << empleados.at(id_Persona).getId_Empleado();
                                         cout << "Cargo Actual: " << empleados.at(id_Persona).getCargo() << endl;
-                                        cout << "Nuevo Cargo: ";
-                                        cin.getline(crg, 20);
-                                        ncrg = charToString(crg);
+                                        ncrg = leerStr("Nuevo Cargo: ");
 
-                                        //Escribir cambios en csv
+                                        empleados.at(id_Persona).setCargo(ncrg);
 
-                                        cout << ncrg;
+                                        actualizarEmpleados(empleados);
+
+                                        pause(SO);
                                     }
                                     else
                                     {
@@ -758,18 +750,18 @@ int main()
                                 case 7:
                                     if (permiso == 3)
                                     {
-                                        char usr[15];
                                         clear(SO);
                                         printTitulo();
                                         cout << "ID: " << empleados.at(id_Persona).getId_Empleado();
                                         cout << "Usuario Actual: " << empleados.at(id_Persona).getCuenta().getUsuario() << endl;
-                                        cout << "Nuevo Usuario: ";
-                                        cin.getline(usr, 10);
-                                        nusr = charToString(usr);
+                                        nusr = leerStr("Nuevo Usuario: ");
 
-                                        //Escribir cambios en csv
+                                        Cuenta tempEmpl(nusr,empleados.at(id_Persona).getCuenta().getPass(),empleados.at(id_Persona).getCuenta().getPermiso(),empleados.at(id_Persona).getCuenta().getId_Persona());
+                                        empleados.at(id_Persona).setCuenta(tempEmpl);
 
-                                        cout << nusr;
+                                        actualizarEmpleados(empleados);
+
+                                        pause(SO);
                                     }
                                     else
                                     {
@@ -780,18 +772,16 @@ int main()
                                 case 8:
                                     if (permiso == 3)
                                     {
-                                        char pss[15];
                                         clear(SO);
                                         printTitulo();
                                         cout << "ID: " << empleados.at(id_Persona).getId_Empleado();
                                         cout << "Password Actual: " << empleados.at(id_Persona).getCuenta().getPass() << endl;
-                                        cout << "Nuevo Password: ";
-                                        cin.getline(pss, 15);
-                                        npss = charToString(pss);
+                                        npss = leerStr("Nuevo Password: ");
 
-                                        //Escribir cambios en csv
+                                        Cuenta tempEmpl(empleados.at(id_Persona).getCuenta().getUsuario(),npss,empleados.at(id_Persona).getCuenta().getPermiso(),empleados.at(id_Persona).getCuenta().getId_Persona());
+                                        empleados.at(id_Persona).setCuenta(tempEmpl);
 
-                                        cout << npss;
+                                        actualizarEmpleados(empleados);
                                     }
                                     else
                                     {
