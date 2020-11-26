@@ -1190,11 +1190,11 @@ int main()
                 {
                     if (permiso == 2) // VENDEDOR NUEVA VENTA
                     {
-                        
+                        cout << "Funcion disponible pronto" << endl; //*************************************************
                     }
                     else // ADMINISTRADOR MODIFICAR EMPLEADOS
                     {
-
+                        cout << "Funcion disponible pronto" << endl; //*************************************************
                     }
                 }
 
@@ -1203,7 +1203,7 @@ int main()
             case 4:
             {
                 clear(SO);
-                if (permiso == 1)
+                if (permiso == 1) // CLIENTE & PAGAR
                 {
                     if (carrito)
                     {
@@ -1235,7 +1235,7 @@ int main()
                         cargarFacturas(facturas);
                     }
                 }
-                else
+                else // VENDEDOR Y ADMIN & PRODUCTOS
                 {
                     bool contiprod = true;
                     while (contiprod)
