@@ -627,10 +627,26 @@ int main()
                                     cout << "ID: " << clientes.at(id_Persona).getId_Cliente() << endl;
                                     cout << "Usuario Actual: " << clientes.at(id_Persona).getCuenta().getUsuario() << endl;
                                     nusr = leerStr("Nuevo Usuario: ");
-
+                                    //*****************************************
+                                    int id_cuenta;
+                                    for (int i = 0; i < cuentas.size(); i++)
+                                    {
+                                        if (cuentas.at(i).getUsuario() == clientes.at(id_Persona).getCuenta().getUsuario() && cuentas.at(i).getPass() == clientes.at(id_Persona).getCuenta().getPass())
+                                        {
+                                            id_cuenta = i;
+                                        }
+                                    }
+                                    //*****************************************
                                     Cuenta tempusr(nusr, clientes.at(id_Persona).getCuenta().getPass(), clientes.at(id_Persona).getCuenta().getPermiso(), clientes.at(id_Persona).getCuenta().getId_Persona());
 
                                     clientes.at(id_Persona).setCuenta(tempusr);
+
+                                    actualizarClientes(clientes);
+                                    
+                                    cuentas.at(id_cuenta).setUsuario(nusr);
+
+                                    actualizarCuentas(cuentas);
+
 
                                     pause(SO);
                                     break;
@@ -642,10 +658,24 @@ int main()
                                     cout << "ID: " << clientes.at(id_Persona).getId_Cliente() << endl;
                                     cout << "Password Actual: " << clientes.at(id_Persona).getCuenta().getPass() << endl;
                                     npss = leerStr("Nuevo Password: ");
-
+                                    //*****************************************
+                                    int id_cuenta;
+                                    for (int i = 0; i < cuentas.size(); i++)
+                                    {
+                                        if (cuentas.at(i).getUsuario() == clientes.at(id_Persona).getCuenta().getUsuario() && cuentas.at(i).getPass() == clientes.at(id_Persona).getCuenta().getPass())
+                                        {
+                                            id_cuenta = i;
+                                        }
+                                    }
+                                    //*****************************************
                                     Cuenta tempps(clientes.at(id_Persona).getCuenta().getUsuario(), npss, clientes.at(id_Persona).getCuenta().getPermiso(), clientes.at(id_Persona).getCuenta().getId_Persona());
 
                                     clientes.at(id_Persona).setCuenta(tempps);
+
+                                    actualizarClientes(clientes);
+
+                                    cuentas.at(id_cuenta).setPass(npss);
+                                    actualizarCuentas(cuentas);
 
                                     pause(SO);
                                     break;
@@ -787,10 +817,25 @@ int main()
                                         cout << "Usuario Actual: " << empleados.at(id_Persona).getCuenta().getUsuario() << endl;
                                         nusr = leerStr("Nuevo Usuario: ");
 
+                                        //*****************************************
+                                        int id_cuenta;
+                                        for (int i = 0; i < cuentas.size(); i++)
+                                        {
+                                            if (cuentas.at(i).getUsuario() == empleados.at(id_Persona).getCuenta().getUsuario() && cuentas.at(i).getPass() == empleados.at(id_Persona).getCuenta().getPass())
+                                            {
+                                                id_cuenta = i;
+                                            }
+                                        }
+                                        //*****************************************
+
                                         Cuenta tempEmpl(nusr, empleados.at(id_Persona).getCuenta().getPass(), empleados.at(id_Persona).getCuenta().getPermiso(), empleados.at(id_Persona).getCuenta().getId_Persona());
                                         empleados.at(id_Persona).setCuenta(tempEmpl);
 
                                         actualizarEmpleados(empleados);
+
+                                        cuentas.at(id_cuenta).setUsuario(nusr);
+
+                                        actualizarCuentas(cuentas);
 
                                         pause(SO);
                                     }
@@ -811,10 +856,24 @@ int main()
                                         cout << "Password Actual: " << empleados.at(id_Persona).getCuenta().getPass() << endl;
                                         npss = leerStr("Nuevo Password: ");
 
+                                        //*****************************************
+                                        int id_cuenta;
+                                        for (int i = 0; i < cuentas.size(); i++)
+                                        {
+                                            if (cuentas.at(i).getUsuario() == empleados.at(id_Persona).getCuenta().getUsuario() && cuentas.at(i).getPass() == empleados.at(id_Persona).getCuenta().getPass())
+                                            {
+                                                id_cuenta = i;
+                                            }
+                                        }
+                                        //*****************************************
+
                                         Cuenta tempEmpl(empleados.at(id_Persona).getCuenta().getUsuario(), npss, empleados.at(id_Persona).getCuenta().getPermiso(), empleados.at(id_Persona).getCuenta().getId_Persona());
                                         empleados.at(id_Persona).setCuenta(tempEmpl);
 
                                         actualizarEmpleados(empleados);
+
+                                        cuentas.at(id_cuenta).setPass(npss);
+                                        actualizarCuentas(cuentas);
                                     }
                                     else
                                     {
