@@ -652,6 +652,7 @@ int main()
                                 switch (op)
                                 {
                                 case 1:
+                                {
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << empleados.at(id_Persona).getId_Empleado() << endl;
@@ -665,12 +666,14 @@ int main()
                                     cout << nnom;
                                     pause(SO);
                                     break;
+                                }
                                 case 2:
+                                {
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << empleados.at(id_Persona).getId_Empleado();
                                     cout << "Apellido Actual: " << empleados.at(id_Persona).getApellido() << endl;
-                                    nape = charToString("Nuevo Apellido: ");
+                                    nape = leerStr("Nuevo Apellido: ");
 
                                     empleados.at(id_Persona).setApellido(nape);
 
@@ -678,7 +681,10 @@ int main()
 
                                     pause(SO);
                                     break;
+                                }
                                 case 3:
+                                {
+
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << empleados.at(id_Persona).getId_Empleado();
@@ -691,7 +697,9 @@ int main()
 
                                     pause(SO);
                                     break;
+                                }
                                 case 4:
+                                {
                                     clear(SO);
                                     printTitulo();
                                     cout << "ID: " << empleados.at(id_Persona).getId_Empleado();
@@ -704,8 +712,9 @@ int main()
 
                                     pause(SO);
                                     break;
-
+                                }
                                 case 5:
+                                {
                                     if (permiso == 3)
                                     {
                                         clear(SO);
@@ -726,7 +735,9 @@ int main()
                                     }
                                     pause(SO);
                                     break;
+                                }
                                 case 6:
+                                {
                                     if (permiso == 3)
                                     {
                                         clear(SO);
@@ -747,7 +758,9 @@ int main()
                                     }
                                     pause(SO);
                                     break;
+                                }
                                 case 7:
+                                {
                                     if (permiso == 3)
                                     {
                                         clear(SO);
@@ -769,7 +782,9 @@ int main()
                                     }
                                     pause(SO);
                                     break;
+                                }
                                 case 8:
+                                {
                                     if (permiso == 3)
                                     {
                                         clear(SO);
@@ -789,14 +804,19 @@ int main()
                                     }
                                     pause(SO);
                                     break;
+                                }
                                 case 9:
+                                {
                                     co = false;
                                     break;
+                                }
                                 default:
+                                {
                                     cout << "ERROR: Opcion Incorrecta\n"
                                          << endl;
                                     pause(SO);
                                     break;
+                                }
                                 }
                             }
                         }
@@ -1498,8 +1518,8 @@ int main()
                 break;
             }
             }
-
                 return 0;
             }
         }
     }
+}
