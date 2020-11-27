@@ -68,8 +68,8 @@ printf("█──█            █───█───█               ");
 printf("█──█    █████████───█───█               1) Consultar\n");
 printf("█──█    █───█───█───█───██████████      2) Agregar\n");
 printf("█──█    █───█───█───█───█──█──█──█      3) Modificar\n");
-printf("█──█    █───█───█───█───█──█──█──█      4) Eliminar\n");
-printf("█──█    █───█───█───█───█──█──█──█      5) Regresar\n");
+printf("█──█    █───█───█───█───█──█──█──█      4) Regresar\n");
+printf("█──█    █───█───█───█───█──█──█──█      \n");
 }
 
 void printMisDatos(int permiso, vector<Empleado> empleados, vector<Cliente> clientes,vector<Departamento> departamentos, int id_persona){

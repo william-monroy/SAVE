@@ -1466,16 +1466,9 @@ int main()
                             pause(SO);
                             break;
                         }
-                        case 4: // ELIMINAR PRODUCTOS
-                            clear(SO);
-
-                            pause(SO);
-                        case 5: //regresar
-
+                        case 4: //regresar
                             contiprod = false;
-
                             break;
-
                         default:
                         {
                             cout << endl
@@ -1498,21 +1491,15 @@ int main()
             }
             default:
             {
+                cout << endl
+                     << "ERROR: Opcion incorrecta." << endl
+                     << endl;
+                pause(SO);
                 break;
             }
             }
-                if (permiso == 1)
-                {
-                }
-                else if (permiso == 2)
-                {
-                }
-                else
-                {
-                }
+
+                return 0;
             }
         }
-
-        return 0;
     }
-}
