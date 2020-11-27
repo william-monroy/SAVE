@@ -415,6 +415,24 @@ void actualizarEmpleados(vector<Empleado> empleados)
     csvEmpleados.close();
 }
 
+void actualizarCuentas(vector<Cuenta> cuentas)
+{
+    ofstream csvCuentas;
+    csvCuentas.open("cuentas.csv");
+    for (int i = 0; i < cuentas.size(); i++)
+    {
+        if (i < cuentas.size() - 1)
+        {
+            csvCuentas << cuentas.at(i).getUsuario() << "," << cuentas.at(i).getPass() << "," << cuentas.at(i).getPermiso() << "," << cuentas.at(i).getId_Persona() << endl;
+        }
+        else
+        {
+            csvCuentas << cuentas.at(i).getUsuario() << "," << cuentas.at(i).getPass() << "," << cuentas.at(i).getPermiso() << "," << cuentas.at(i).getId_Persona();
+        }
+    }
+    csvCuentas.close();
+}
+
 int main()
 {
     color(2);
