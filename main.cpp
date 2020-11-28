@@ -1039,6 +1039,19 @@ int main()
                         //*********************************************************
                         facturas.clear();
                         cargarFacturas(facturas);
+                        //SAODFVAFBVIJADFVIJDNFVIJANDFVADFNVADNFVAKDNFVKLADNFVKJANDSKJVNASKJNVKJASDNVKASDNVLKANSDVLKAJSDNVKJASNDVLKASDNVLKASDNK
+                        cout<<"-------cargando facturas...."<<endl;
+                        for (int i = 0; i < facturas.size(); i++)
+                        {
+                            cout << "\nFactura " << i + 1 << endl;
+                            cout << "ID: " << facturas.at(i).getId_Factura()<< endl;
+                            cout << "Cliente: " << facturas.at(i).getId_Cliente()<< endl;
+                            facturas.at(i).getFecha_Compra().mostrarFecha();
+                            cout << "Producto: " << facturas.at(i).getId_Producto()<< endl;
+                            cout << "Cantidad: " << facturas.at(i).getCantidad()<< endl;
+                            cout << "Total: " << facturas.at(i).getTotal_a_pagar()<< endl;
+                        }
+                        cout<<"-------------------------------"<<endl;
                     }
                     else if (productos.at(codi).getStock() == 0)
                     {
@@ -1260,24 +1273,28 @@ int main()
                 {
                     if (carrito)
                     {
+                        double totAcum=0;
                         cout << "=================================================================================" << endl;
                         cout << "================================DETALLE DE COMPRA================================" << endl;
                         cout << "=================================================================================" << endl
                              << endl;
-                        cout << "ID    NOMBRE                               PRECIO      CANTIDAD    SUB_TOTAL";
+                        cout << "ID    NOMBRE                               PRECIO      CANTIDAD    SUB_TOTAL"<<endl;
                         for (int i = 0; i < facturas.size(); i++)
                         {
-                            if (facturas.at(id_Fact).getId_Factura() == facturas.at(i).getId_Factura())
+                            if (id_Fact == facturas.at(i).getId_Factura())
                             {
-                                string detId = to_string(facturas.at(i).getId_Factura());
+                                string detId = to_string(facturas.at(i).getId_Producto());
                                 string detNom = productos.at(facturas.at(i).getId_Producto()).getNombre();
                                 string detPrec = aStrPrecision(productos.at(facturas.at(i).getId_Producto()).getPrecio(), 2);
                                 string detCant = aStrPrecision(facturas.at(i).getCantidad(), 2);
                                 string detSubTot = aStrPrecision(facturas.at(i).getTotal_a_pagar(), 2);
                                 cout << formatStr(detId, 4) << "  " << formatStr(detNom, 35) << "  " << formatStr(detPrec, 10) << "  " << formatStr(detCant, 10) << "  " << formatStr(detSubTot, 14) << endl;
+                                totAcum+=facturas.at(i).getTotal_a_pagar();
                             }
                         }
                         cout << endl;
+                        cout << "TOTAL ACUMULADO: ";
+                        cout<< totAcum<<endl<<endl;    
                     }
                     else
                     {
@@ -1332,6 +1349,11 @@ int main()
                         id_Fact++;
                         facturas.clear();
                         cargarFacturas(facturas);
+                        carrito=false;
+                    }
+                    else{
+                        cout << "No ha agregado productos a su orden" << endl
+                             << endl;
                     }
                 }
                 else // VENDEDOR Y ADMIN & PRODUCTOS
@@ -1585,6 +1607,7 @@ int main()
             case 5:
             {
                 cont = false;
+                break;
             }
             default:
             {
@@ -1595,8 +1618,10 @@ int main()
                 break;
             }
             }
-                return 0;
+                
             }
         }
     }
+    pause(SO);
+    return 0;
 }
