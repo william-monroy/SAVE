@@ -553,7 +553,7 @@ int main()
                             printTitulo();
                             printCRUD(permiso, empleados, clientes, id_Persona);
                             int op;
-                            cout << "\t\t\t\t\tOPCION: ";
+                            cout << "\t      OPCION: ";
                             cin >> op;
                             if (permiso == 1) // CAMBIAR MIS DATOS PARA CLIENTES
                             {

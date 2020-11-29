@@ -131,7 +131,7 @@ printf("    `8.       ");
 cout<<"5) Modificar Usuario"<<endl;
 printf("     `8       ");
 cout<<"6) Modificar Contrasena"<<endl;
-cout<<"\t\t\t\t\t7) Regresar";
+cout<<"\t      7) Regresar"<<endl<<endl;
 }else{
 cout << "DATOS\n"<<endl;
 printf("b.            ");
