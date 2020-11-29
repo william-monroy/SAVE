@@ -1039,19 +1039,6 @@ int main()
                         //*********************************************************
                         facturas.clear();
                         cargarFacturas(facturas);
-                        //SAODFVAFBVIJADFVIJDNFVIJANDFVADFNVADNFVAKDNFVKLADNFVKJANDSKJVNASKJNVKJASDNVKASDNVLKANSDVLKAJSDNVKJASNDVLKASDNVLKASDNK
-                        cout<<"-------cargando facturas...."<<endl;
-                        for (int i = 0; i < facturas.size(); i++)
-                        {
-                            cout << "\nFactura " << i + 1 << endl;
-                            cout << "ID: " << facturas.at(i).getId_Factura()<< endl;
-                            cout << "Cliente: " << facturas.at(i).getId_Cliente()<< endl;
-                            facturas.at(i).getFecha_Compra().mostrarFecha();
-                            cout << "Producto: " << facturas.at(i).getId_Producto()<< endl;
-                            cout << "Cantidad: " << facturas.at(i).getCantidad()<< endl;
-                            cout << "Total: " << facturas.at(i).getTotal_a_pagar()<< endl;
-                        }
-                        cout<<"-------------------------------"<<endl;
                     }
                     else if (productos.at(codi).getStock() == 0)
                     {
