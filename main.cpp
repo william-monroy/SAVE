@@ -1,12 +1,12 @@
 #include <iostream>
 #include <stdlib.h>
-#include <Windows.h>
 #include <vector>
 #include <fstream>
 #include <ctime>
 #include <math.h>
 
 #ifdef _WIN64
+#include <Windows.h>
 #include <windows.h>
 #else
 #include <unistd.h>
@@ -438,7 +438,7 @@ int main()
     color(2);
     cout << endl;
     string SO = "";
-    SetConsoleOutputCP(CP_UTF8);
+    //SetConsoleOutputCP(CP_UTF8);
 #if defined(_WIN64)
     cout << "Estoy en Windows de 64 bits.\n"
          << endl;
